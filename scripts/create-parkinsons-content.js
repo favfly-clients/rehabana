@@ -1,6 +1,6 @@
 /**
  * Seeds the conditions section with its first pillar: the /conditions hub,
- * Parkinson's Disease, and five Parkinson's topics.
+ * Parkinson's Disease, and the nine Parkinson's topics in the site tree.
  *
  *   node_modules/.bin/jiti scripts/create-parkinsons-content.js
  *
@@ -11,9 +11,11 @@
  * documents. After this finishes, open Prismic -> Releases -> "Migration
  * Release", review, and publish it — nothing changes on the site before that.
  *
- * Run it once. A document that is already PUBLISHED is updated in place; one
- * still sitting unpublished in the release is invisible to this script and
- * would be created a second time, so publish (or discard) the release first.
+ * Safe to re-run: it only CREATES what is missing. A published document is
+ * left as editors have it, except a topic marked `refresh` (rewritten) or one
+ * found under `previousSlugs` (renamed). A document still unpublished in the
+ * release is invisible to this script and would be created a second time, so
+ * publish (or discard) the release before running it again.
  *
  * This is the national layer: no city names in the copy. Kolkata lives on the
  * existing service page, which the condition links to through `local_page`.
@@ -423,13 +425,18 @@ const TOPICS = [
     ],
   },
   {
-    slug: "speech-and-swallowing",
+    // Renamed to match the site tree, and rewritten to absorb the blog post
+    // /how-speech-therapy-helps-patients-with-parkinsons-disease, which now
+    // redirects here (vercel.json).
+    slug: "speech-swallowing",
+    previousSlugs: ["speech-and-swallowing"],
+    refresh: true,
     title: "Speech and Swallowing",
     summary:
-      "Why the voice gets softer and swallowing gets harder, and how speech therapy helps.",
+      "Why the voice gets softer and swallowing gets harder, and how speech therapy, including LSVT LOUD, helps.",
     meta_title: "Parkinson's Speech & Swallowing Problems | Therapy | Rehabana",
     meta_description:
-      "How Parkinson's affects the voice and swallowing, the warning signs of swallowing difficulty, and how speech and language therapy helps.",
+      "How Parkinson's affects the voice and swallowing, the warning signs of dysphagia, and how speech therapy and LSVT LOUD help people be heard and eat safely.",
     build: (img) => [
       hero(
         "Speech and Swallowing in Parkinson's",
@@ -437,19 +444,50 @@ const TOPICS = [
         img.hero,
       ),
       about({
+        subheading: "What families notice",
+        heading: "\"We can't hear him any more\"",
+        description: [
+          "Most people notice the shaking and stiffness of Parkinson's first. Families often say something else hurts more: a parent who has stopped joining conversations, a voice too quiet to follow, coughing over a glass of water.",
+          "These changes affect confidence, dignity and connection. Speech therapy aims not at perfect speech but at making daily life feel normal again: being understood, eating without fear, and feeling included.",
+        ],
+        image: img.about[2],
+      }),
+      about({
         subheading: "Speech",
         heading: "How the voice changes",
         description: [
-          "Many people with Parkinson's speak more softly than they realise. Speech can also become monotone, rushed or slurred, and facial expression may reduce, which makes conversation harder for everyone.",
-          "Speech therapy trains a louder, clearer voice through intensive, repeated practice, and teaches strategies for busy or noisy settings.",
+          "Parkinson's affects the small movements of the lips, tongue, voice box and throat. Over time the voice becomes softer and flatter, words blur together, and facial expression reduces. Talking becomes tiring.",
+          "The hardest part is that most people feel they are speaking loudly and clearly. The sound that comes out is not what they feel inside, and that gap causes frustration on both sides.",
+        ],
+        items: [
+          "A very soft voice",
+          "Slurred or unclear words",
+          "Flat, monotone speech",
+          "Rushed speech or trailing off at the end of sentences",
+          "Reduced facial expression",
         ],
         image: img.about[0],
+      }),
+      about({
+        subheading: "Voice therapy",
+        heading: "LSVT LOUD: retraining a normal voice",
+        description: [
+          "Lee Silverman Voice Treatment, known as LSVT LOUD, is the voice therapy with the strongest evidence in Parkinson's. People with Parkinson's gradually start using a small voice, and the brain comes to accept it as normal. LSVT LOUD recalibrates that sense of loudness through short, intensive, repeated practice.",
+          "Alongside it, therapists work on clear articulation, pacing, facial expression and strategies for noisy places and phone calls.",
+        ],
+        items: [
+          "Speak louder without straining",
+          "Sound clearer and be understood first time",
+          "Join conversations with confidence again",
+        ],
+        image: img.about[3],
+        swap: true,
       }),
       about({
         subheading: "Swallowing",
         heading: "Signs of swallowing difficulty",
         description: [
-          "Swallowing problems (dysphagia) can develop as Parkinson's progresses. They matter because food or drink entering the airway can cause chest infections.",
+          "Speech and swallowing use the same muscles, so swallowing problems (dysphagia) often develop too. They matter because food or drink entering the airway can cause aspiration pneumonia, a serious chest infection. A speech therapist assesses swallowing and teaches safer techniques, postures and food textures.",
         ],
         items: [
           "Coughing or choking during or after meals",
@@ -473,7 +511,11 @@ const TOPICS = [
         ],
         [
           "Do speech exercises really work?",
-          "Structured, intensive voice therapy has good evidence in Parkinson's. The key is regular practice at home between sessions.",
+          "Structured, intensive voice therapy such as LSVT LOUD has good evidence in Parkinson's. The key is regular practice at home between sessions.",
+        ],
+        [
+          "Can speech therapy cure Parkinson's speech problems?",
+          "It cannot cure Parkinson's, but it helps people manage the parts of the disease that affect talking and eating, and the gains are greatest when therapy starts early.",
         ],
       ]),
     ],
@@ -534,7 +576,256 @@ const TOPICS = [
       ]),
     ],
   },
+  {
+    slug: "occupational-therapy",
+    title: "Occupational Therapy",
+    summary:
+      "Keeping up with dressing, eating, writing and work: how occupational therapy protects independence.",
+    meta_title: "Occupational Therapy for Parkinson's Disease | Rehabana",
+    meta_description:
+      "How occupational therapy helps people with Parkinson's manage daily tasks like dressing, eating, writing and bathing, with practical tools and home adaptations.",
+    build: (img) => [
+      hero(
+        "Occupational Therapy for Parkinson's",
+        "Practical help with the everyday tasks Parkinson's makes harder, so people can stay independent for longer.",
+        img.hero,
+      ),
+      about({
+        subheading: "What it is",
+        heading: "Occupational therapy in Parkinson's",
+        description: [
+          "Occupational therapy focuses on the activities that make up a day: getting dressed, eating, bathing, writing, cooking, working and hobbies. As Parkinson's slows movement and reduces fine hand control, these tasks take longer and become frustrating.",
+          "An occupational therapist looks at how the person does each task, then changes the method, the tools or the environment so it becomes manageable again.",
+        ],
+        image: img.about[0],
+      }),
+      about({
+        subheading: "What it covers",
+        heading: "How an occupational therapist helps",
+        description: ["Typical goals include:"],
+        items: [
+          "Easier ways to dress, such as sitting down and using simple fastenings",
+          "Adapted cutlery, cups and plates for eating with less spillage",
+          "Handwriting practice and alternatives such as typing or voice tools",
+          "Bathroom and bedroom changes for safer transfers",
+          "Energy planning so important tasks fall at the best times of day",
+          "Staying in work or hobbies for as long as possible",
+        ],
+        image: img.about[1],
+        swap: true,
+      }),
+      faq("Occupational therapy questions", [
+        [
+          "How is occupational therapy different from physiotherapy?",
+          "Physiotherapy works on movement itself: walking, balance and strength. Occupational therapy works on using that movement for daily tasks, and on adapting the tasks and the home.",
+        ],
+        [
+          "Why has handwriting become so small?",
+          "Small, cramped handwriting (micrographia) is common in Parkinson's. Practising large, deliberate letters and using thicker pens often helps.",
+        ],
+        [
+          "Is it only for advanced Parkinson's?",
+          "No. Early input sets up good habits and home changes before problems build up.",
+        ],
+      ]),
+    ],
+  },
+  {
+    slug: "rehabilitation",
+    title: "Rehabilitation",
+    summary:
+      "What a complete Parkinson's rehabilitation programme looks like, who is in the team, and when to start.",
+    meta_title: "Parkinson's Rehabilitation: Programme, Team & Goals | Rehabana",
+    meta_description:
+      "A guide to Parkinson's rehabilitation: the multidisciplinary team, what each therapy does, how goals are set at each stage, and why starting early matters.",
+    build: (img) => [
+      hero(
+        "Rehabilitation for Parkinson's Disease",
+        "How a coordinated team helps people with Parkinson's keep moving, speaking and living independently at every stage.",
+        img.hero,
+      ),
+      about({
+        subheading: "Why rehab",
+        heading: "Medicine and rehabilitation work together",
+        description: [
+          "Medicines prescribed by a neurologist help replace the dopamine the brain is missing. They do not, on their own, retrain walking, balance, voice or daily routines. Rehabilitation does.",
+          "A common misconception is that rehabilitation is only for later stages. In fact it helps most when it starts soon after diagnosis, while there is more to protect.",
+        ],
+        image: img.about[0],
+      }),
+      about({
+        subheading: "The team",
+        heading: "Who is involved",
+        description: [
+          "Parkinson's affects many systems, so good rehabilitation is multidisciplinary, led by a rehabilitation physician who sets goals with the person and the family.",
+        ],
+        items: [
+          "Physiotherapist: walking, balance, posture and fall prevention",
+          "Occupational therapist: daily tasks and home safety",
+          "Speech therapist: voice, communication and swallowing",
+          "Psychologist: mood, anxiety and adjustment",
+          "Dietitian: nutrition, weight and constipation",
+        ],
+        image: img.about[1],
+        swap: true,
+      }),
+      about({
+        subheading: "How it runs",
+        heading: "Goals at each stage",
+        description: [
+          "Early on, the focus is fitness, posture and habits that slow decline in function. In the middle stage it shifts to balance, freezing, fall prevention and voice. Later, it is about safe transfers, swallowing, comfort and supporting caregivers.",
+          "Progress is measured regularly so the programme can be adjusted, and every plan includes exercises to continue at home.",
+        ],
+        image: img.about[2],
+      }),
+      faq("Rehabilitation questions", [
+        [
+          "How long does Parkinson's rehabilitation last?",
+          "Parkinson's is long term, so rehabilitation is usually done in blocks of focused therapy followed by a home programme, repeated as needs change.",
+        ],
+        [
+          "Can rehabilitation reverse Parkinson's?",
+          "No, but it can improve walking, balance, voice and independence, and help people keep those gains for longer.",
+        ],
+        [
+          "Is rehabilitation useful in advanced Parkinson's?",
+          "Yes. Goals change to safety, comfort, swallowing and supporting the family, but there is still a lot rehabilitation can do.",
+        ],
+      ]),
+    ],
+  },
+  {
+    slug: "symptoms",
+    title: "Symptoms and Early Signs",
+    summary:
+      "The early signs of Parkinson's, the main motor symptoms, and when to see a neurologist.",
+    meta_title: "Parkinson's Disease Symptoms & Early Signs | Rehabana",
+    meta_description:
+      "Learn the early signs and main symptoms of Parkinson's disease: tremor, slowness, stiffness, balance problems and non-motor changes, and when to see a doctor.",
+    build: (img) => [
+      hero(
+        "Symptoms of Parkinson's Disease",
+        "The early signs that are easy to miss, the main symptoms doctors look for, and when to get checked.",
+        img.hero,
+      ),
+      about({
+        subheading: "Early signs",
+        heading: "Signs that can appear first",
+        description: [
+          "Parkinson's starts slowly, and the first signs are often put down to age or stress. Some appear years before the diagnosis.",
+        ],
+        items: [
+          "A slight tremor in one finger, hand or chin at rest",
+          "Smaller handwriting",
+          "Loss of sense of smell",
+          "Acting out dreams during sleep",
+          "Constipation that is new or persistent",
+          "A softer voice or a less expressive face",
+          "Stiffness or reduced arm swing on one side when walking",
+        ],
+        image: img.about[0],
+      }),
+      about({
+        subheading: "Main symptoms",
+        heading: "The symptoms doctors look for",
+        description: [
+          "A diagnosis is based on slowness of movement (bradykinesia) together with tremor at rest, stiffness (rigidity), or both. Balance problems usually come later.",
+          "Symptoms typically begin on one side of the body and stay worse on that side. Parkinson's also has non-motor symptoms, such as low mood, sleep problems and dizziness, which are covered in their own guide.",
+        ],
+        image: img.about[1],
+        swap: true,
+      }),
+      faq("Symptom questions", [
+        [
+          "Is every tremor Parkinson's?",
+          "No. The most common tremor, essential tremor, happens when the hands are being used rather than at rest. Only a doctor can tell the difference reliably.",
+        ],
+        [
+          "Can young people get Parkinson's?",
+          "Yes. Young-onset Parkinson's begins before 50. It is less common but well recognised.",
+        ],
+        [
+          "When should I see a doctor?",
+          "If several of the early signs appear together, or one side of the body is becoming slower or stiffer, see a neurologist for an assessment.",
+        ],
+      ]),
+    ],
+  },
+  {
+    // Absorbs the blog post /new-treatment-for-parkinson-emerging-in-india,
+    // which redirects here (vercel.json).
+    slug: "treatments",
+    title: "Treatment Options",
+    summary:
+      "Medicines, surgery, rehabilitation and the research on the horizon: an overview of Parkinson's treatment.",
+    meta_title: "Parkinson's Disease Treatment Options & New Research | Rehabana",
+    meta_description:
+      "An overview of Parkinson's treatment: levodopa and other medicines, deep brain stimulation, rehabilitation, and new research including work from India.",
+    build: (img) => [
+      hero(
+        "Treatment Options for Parkinson's",
+        "There is no cure yet, but treatment can control symptoms well for many years. Here is what is available and what is being researched.",
+        img.hero,
+      ),
+      about({
+        subheading: "Medicines",
+        heading: "Medicines for Parkinson's",
+        description: [
+          "Medicines are prescribed and adjusted by a neurologist. Levodopa, which the brain converts into dopamine, is the most effective. Other options include dopamine agonists, MAO-B inhibitors and COMT inhibitors, often used in combination.",
+          "Over time, people may notice the effect wearing off before the next dose. Timing doses carefully and keeping a symptom diary helps the neurologist fine-tune treatment.",
+        ],
+        image: img.about[0],
+      }),
+      about({
+        subheading: "Beyond tablets",
+        heading: "Surgery and rehabilitation",
+        description: [
+          "For some people whose symptoms fluctuate despite good medicine management, deep brain stimulation (DBS) is an option. Electrodes placed in the brain are controlled by a device under the skin. It requires careful selection by a specialist team.",
+          "Rehabilitation is the other pillar of treatment. Physiotherapy, occupational therapy, speech therapy and psychological support improve function and quality of life from the time of diagnosis.",
+        ],
+        image: img.about[1],
+        swap: true,
+      }),
+      about({
+        subheading: "Research",
+        heading: "New treatments on the horizon",
+        description: [
+          "Research into Parkinson's is active worldwide, including in India. Indian scientists have reported laboratory work on nano-formulations that deliver drugs such as 17β-oestradiol or melatonin to the brain more precisely, with the aim of protecting nerve cells.",
+          "These approaches are experimental and not yet available as treatment. Until they are proven in patients, the best results come from combining medicines with early, consistent rehabilitation.",
+        ],
+        image: img.about[2],
+      }),
+      faq("Treatment questions", [
+        [
+          "Does levodopa stop working over time?",
+          "It keeps working, but its effect can become shorter and less smooth. Adjusting doses and adding other medicines usually helps.",
+        ],
+        [
+          "Who is suitable for deep brain stimulation?",
+          "Usually people with good response to levodopa who have troublesome fluctuations or tremor, without significant memory problems. A specialist team assesses each case.",
+        ],
+        [
+          "Should rehabilitation wait until medicines stop working?",
+          "No. Rehabilitation works best alongside medicines from early on.",
+        ],
+      ]),
+    ],
+  },
 ];
+
+// The order the site tree lists them in; `order` on each document follows it.
+const TREE_ORDER = [
+  "caregiver-guide",
+  "gait-and-mobility",
+  "non-motor-symptoms",
+  "occupational-therapy",
+  "physiotherapy",
+  "rehabilitation",
+  "speech-swallowing",
+  "symptoms",
+  "treatments",
+];
+TOPICS.sort((a, b) => TREE_ORDER.indexOf(a.slug) - TREE_ORDER.indexOf(b.slug));
 
 // ---------------------------------------------------------------------------
 // Migration
@@ -546,7 +837,13 @@ const seo = (entry, featuredImage) => ({
   ...(featuredImage && { featured_image: featuredImage }),
 });
 
-const strip = ({ build, slug, ...rest }) => rest;
+const strip = ({ build, slug, previousSlugs, refresh, ...rest }) => rest;
+
+/** A document from this run or an existing one, as a link field value. */
+const asLink = (doc) =>
+  doc instanceof prismic.PrismicMigrationDocument
+    ? doc
+    : prismic.documentToLinkField(doc);
 
 async function main() {
   const writeToken = process.env.PRISMIC_WRITE_TOKEN;
@@ -602,23 +899,55 @@ async function main() {
 
   const migration = prismic.createMigration();
 
-  // Create, or update when a published document with that UID already exists.
-  const upsert = async (type, uid, data, title) => {
-    const existing = uid
-      ? await client.getByUID(type, uid).catch(() => null)
-      : await client.getSingle(type).catch(() => null);
+  const find = (type, uid) =>
+    uid
+      ? client.getByUID(type, uid).catch(() => null)
+      : client.getSingle(type).catch(() => null);
 
-    console.log(`  ${existing ? "update" : "create"}  ${type}  ${uid || ""}`);
+  /**
+   * Creates the document if it doesn't exist. An existing one is LEFT ALONE —
+   * editors may have changed it in Prismic since — unless `refresh` is set.
+   * A document found under one of `previousSlugs` is renamed to `uid`.
+   */
+  const ensure = async (
+    type,
+    uid,
+    data,
+    title,
+    { refresh = false, previousSlugs = [] } = {},
+  ) => {
+    let existing = await find(type, uid);
+    let renamedFrom = null;
 
-    return existing
-      ? migration.updateDocument({ ...existing, data }, title)
-      : migration.createDocument(
-          { type, ...(uid && { uid }), lang, data },
-          title,
-        );
+    for (const old of previousSlugs) {
+      if (existing) break;
+      existing = await find(type, old);
+      if (existing) renamedFrom = old;
+    }
+
+    if (!existing) {
+      console.log(`  create  ${type}  ${uid || ""}`);
+      return migration.createDocument(
+        { type, ...(uid && { uid }), lang, data },
+        title,
+      );
+    }
+
+    if (!refresh && !renamedFrom) {
+      console.log(`  keep    ${type}  ${uid || ""}`);
+      return existing;
+    }
+
+    console.log(
+      `  update  ${type}  ${uid}${renamedFrom ? `  (renamed from ${renamedFrom})` : ""}`,
+    );
+    return migration.updateDocument(
+      { ...existing, uid, data: refresh ? data : existing.data },
+      title,
+    );
   };
 
-  await upsert(
+  await ensure(
     "conditions_page",
     null,
     {
@@ -629,7 +958,7 @@ async function main() {
     "Conditions",
   );
 
-  const condition = await upsert(
+  const condition = await ensure(
     "condition",
     CONDITION_UID,
     {
@@ -642,17 +971,23 @@ async function main() {
   );
 
   for (const [index, topic] of TOPICS.entries()) {
-    await upsert(
+    await ensure(
       "condition_topic",
       `${CONDITION_UID}-${topic.slug}`,
       {
         ...strip(topic),
         order: index + 1,
-        condition,
+        condition: asLink(condition),
         ...seo(topic, img.about[index % img.about.length]),
         slices: [...topic.build(img), closingCta],
       },
       `${CONDITION.name}: ${topic.title}`,
+      {
+        refresh: topic.refresh,
+        previousSlugs: (topic.previousSlugs ?? []).map(
+          (slug) => `${CONDITION_UID}-${slug}`,
+        ),
+      },
     );
   }
 

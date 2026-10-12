@@ -7,6 +7,21 @@
       "source": "/rehabservice/:path*",
       "destination": "/:path*",
       "permanent": true
+    },
+    {
+      "source": "/parkinsons-rehab-information-page",
+      "destination": "/conditions/parkinsons-disease/caregiver-guide",
+      "permanent": true
+    },
+    {
+      "source": "/how-speech-therapy-helps-patients-with-parkinsons-disease",
+      "destination": "/conditions/parkinsons-disease/speech-swallowing",
+      "permanent": true
+    },
+    {
+      "source": "/new-treatment-for-parkinson-emerging-in-india",
+      "destination": "/conditions/parkinsons-disease/treatments",
+      "permanent": true
     }
   ]
 }
