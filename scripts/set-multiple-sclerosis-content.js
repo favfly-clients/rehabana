@@ -12,9 +12,10 @@
  * publish it in Prismic before anything changes on the site.
  *
  * The client's wording is kept. What changed on the way in:
- *  - "Read more" / "Explore" links to MS topic pages, assessments, experts and
- *    a Kolkata MS page are left out: none of those pages exist yet. The one
- *    that does, /robotic-rehab, is linked.
+ *  - "Read more" links point at the MS topic pages under
+ *    /conditions/multiple-sclerosis/ (scripts/create-multiple-sclerosis-
+ *    topics.js). Links to assessments, experts and a Kolkata MS page are left
+ *    out until those pages exist.
  *  - "The Wider Rehabana MS Ecosystem" is left out: it describes the site
  *    plan ("this structure allows the pillar page to become...") and links to
  *    sections that don't exist yet.
@@ -40,6 +41,9 @@ const REPOSITORY =
   process.env.NEXT_PUBLIC_PRISMIC_ENVIRONMENT || sm.repositoryName;
 
 const UID = "multiple-sclerosis";
+
+/** A topic page under this condition (scripts/create-multiple-sclerosis-topics.js). */
+const T = (slug) => `/conditions/${UID}/${slug}`;
 const IMAGE_DIR = "docs/conditions/multiple-sclerosis";
 
 const DIAGRAMS = {
@@ -137,6 +141,8 @@ const build = ({ hero: heroImage, photos: p, diagrams: d }) => [
   }),
   about({
     heading: "Symptoms of multiple sclerosis",
+    links: [["Multiple Sclerosis Symptoms", T("symptoms")]],
+    linksLabel: "Read more",
     description: [
       "MS symptoms can involve movement, sensation, vision, thinking, speech, swallowing and energy.",
       "MS does not produce the same symptoms in everyone. Common problems may include weakness, stiffness or spasticity, balance and coordination difficulties, walking problems, altered sensation, pain, fatigue, vision changes and cognitive difficulties. Some people may also experience speech or swallowing difficulties. Symptoms can be mild or more disabling and may change over time.",
@@ -171,6 +177,8 @@ const build = ({ hero: heroImage, photos: p, diagrams: d }) => [
   }),
   about({
     heading: "What is multiple sclerosis rehabilitation?",
+    links: [["Multiple Sclerosis Rehabilitation", T("rehabilitation")]],
+    linksLabel: "Read more",
     description: [
       "MS rehabilitation is a goal-based process that helps a person maintain or improve function and independence despite the challenges caused by MS.",
       "Multiple sclerosis rehabilitation brings together assessment, goal setting, therapeutic intervention, education and regular review. Depending on the person's needs, it may include physiotherapy, occupational therapy, speech and swallowing therapy, cognitive rehabilitation, fatigue management, mobility training and other specialist input. Current rehabilitation guidance emphasises a holistic, multidisciplinary approach based on individual needs and goals.",
@@ -196,6 +204,8 @@ const build = ({ hero: heroImage, photos: p, diagrams: d }) => [
   }),
   about({
     heading: "Physiotherapy for multiple sclerosis",
+    links: [["MS Physiotherapy", T("physiotherapy")]],
+    linksLabel: "Read more",
     description: [
       "Physiotherapy focuses on movement, mobility, balance, strength, endurance and physical function.",
       "Depending on the person's presentation, physiotherapy may address walking, balance, coordination, weakness, stiffness, transfers, endurance and physical activity. Exercise and physical activity can be an important part of MS management when appropriately selected and adapted to the individual's abilities and symptoms.",
@@ -205,6 +215,8 @@ const build = ({ hero: heroImage, photos: p, diagrams: d }) => [
   }),
   about({
     heading: "Occupational therapy for multiple sclerosis",
+    links: [["MS Occupational Therapy", T("occupational-therapy")]],
+    linksLabel: "Read more",
     description: [
       "Occupational therapy helps people perform everyday activities more safely, efficiently and independently.",
       "Occupational therapy may focus on self-care, household activities, work, cognitive strategies, energy conservation, equipment and environmental adaptations. The emphasis is on helping the person participate in activities that are important to them rather than focusing only on impairment.",
@@ -213,6 +225,8 @@ const build = ({ hero: heroImage, photos: p, diagrams: d }) => [
   }),
   about({
     heading: "Balance, coordination and mobility",
+    links: [["Balance and Coordination", T("balance-and-coordination")], ["Gait and Mobility", T("gait-and-mobility")]],
+    linksLabel: "Read more",
     description: [
       "Balance and walking problems can affect safety, confidence and independence.",
       "MS-related weakness, altered sensation, coordination problems, fatigue or stiffness can contribute to difficulty walking or maintaining balance. Rehabilitation may therefore address balance strategies, walking practice, transfers, mobility aids and safe movement. The appropriate approach depends on the individual's assessment rather than the diagnosis alone.",
@@ -222,6 +236,8 @@ const build = ({ hero: heroImage, photos: p, diagrams: d }) => [
   }),
   about({
     heading: "Fatigue and sleep",
+    links: [["MS Fatigue and Sleep", T("fatigue-and-sleep")]],
+    linksLabel: "Read more",
     description: [
       "MS fatigue is more than simply feeling tired and can significantly affect daily function.",
       "Fatigue may reduce a person's ability to work, exercise, socialise or complete everyday activities. Rehabilitation may include identifying fatigue triggers, planning activities, balancing activity and rest, improving efficiency and addressing factors that contribute to poor sleep or reduced energy. Fatigue management should be individualised rather than based on a single exercise prescription.",
@@ -230,6 +246,8 @@ const build = ({ hero: heroImage, photos: p, diagrams: d }) => [
   }),
   about({
     heading: "Cognitive changes in MS",
+    links: [["Cognitive Changes in MS", T("cognitive-changes")]],
+    linksLabel: "Read more",
     description: [
       "Changes in attention, memory, processing or planning can affect everyday independence even when physical abilities are relatively good.",
       "Cognitive difficulties may influence work, communication, medication routines, household tasks and decision-making. Rehabilitation can include identifying the specific cognitive difficulty, using practical strategies and adapting tasks or the environment to support successful participation.",
@@ -239,6 +257,8 @@ const build = ({ hero: heroImage, photos: p, diagrams: d }) => [
   }),
   about({
     heading: "Spasticity and pain",
+    links: [["Spasticity and Pain in MS", T("spasticity-and-pain")]],
+    linksLabel: "Read more",
     description: [
       "Stiffness, muscle spasms and pain can interfere with movement, sleep, comfort and daily activities.",
       "Spasticity and pain need to be considered in the context of the person's overall function. Rehabilitation may involve positioning, movement strategies, stretching, strengthening, activity modification and appropriate medical management when required. The aim is not simply to reduce a symptom, but to understand how it affects meaningful function.",
@@ -247,6 +267,8 @@ const build = ({ hero: heroImage, photos: p, diagrams: d }) => [
   }),
   about({
     heading: "Speech and swallowing",
+    links: [["MS Speech and Swallowing", T("speech-swallowing")]],
+    linksLabel: "Read more",
     description: [
       "Speech or swallowing difficulties can affect communication, nutrition, safety and participation.",
       "Some people with MS may develop difficulties with speech, voice or swallowing. A speech and swallowing assessment can help identify the nature of the problem and guide appropriate strategies or treatment. The rehabilitation plan should reflect the person's communication and nutritional needs as well as their everyday environment.",
@@ -256,6 +278,8 @@ const build = ({ hero: heroImage, photos: p, diagrams: d }) => [
   }),
   about({
     heading: "MS treatment and rehabilitation work together",
+    links: [["Multiple Sclerosis Treatments", T("treatments")]],
+    linksLabel: "Read more",
     description: [
       "Medical treatment and rehabilitation have different but complementary roles in MS care.",
       "MS treatment may include disease-modifying therapies, medicines for specific symptoms and treatment of relapses, while rehabilitation focuses on function, participation, independence and adaptation. The appropriate medical treatment depends on the person's MS type, symptoms and clinical situation and should be managed by the relevant medical team.",
@@ -268,7 +292,8 @@ const build = ({ hero: heroImage, photos: p, diagrams: d }) => [
       "Technology can be used as an additional rehabilitation tool when it matches the person's clinical and functional goals.",
       "Robotic rehabilitation may support repetitive, structured and task-focused practice for selected patients. Technology should not replace clinical assessment or therapist-guided rehabilitation; rather, it can be considered when the rehabilitation team believes it may add value to the individual's programme.",
     ],
-    links: [["Robotic rehabilitation", "/robotic-rehab"]],
+    links: [["Robotic Rehabilitation", "/robotic-rehab"]],
+    linksLabel: "Explore",
     image: p[5],
     swap: true,
   }),
@@ -299,6 +324,8 @@ const build = ({ hero: heroImage, photos: p, diagrams: d }) => [
   }),
   about({
     heading: "Community reintegration",
+    links: [["Community Reintegration in MS", T("community-reintegration")]],
+    linksLabel: "Read more",
     description: [
       "Rehabilitation should ultimately help a person participate in life beyond the rehabilitation centre.",
       "Community reintegration may involve returning to work, travelling, shopping, attending social activities, managing family responsibilities or participating in hobbies. The rehabilitation team can identify barriers and develop strategies that make these activities safer and more achievable.",
@@ -308,6 +335,8 @@ const build = ({ hero: heroImage, photos: p, diagrams: d }) => [
   }),
   about({
     heading: "Caregiver support",
+    links: [["MS Caregiver Guide", T("caregiver-guide")]],
+    linksLabel: "Read more",
     description: [
       "Families and caregivers need practical knowledge and support because MS can affect the whole household.",
       "Caregiver involvement may include understanding symptoms, supporting safe mobility, assisting with daily activities, recognising changing needs and learning when professional review may be required. Importantly, rehabilitation should also consider how much assistance the caregiver can realistically provide.",
@@ -359,13 +388,24 @@ async function main() {
 
   const migration = prismic.createMigration();
 
+  // On a re-run the diagrams are already in the media library: reuse the ones
+  // on the published page (in order) instead of uploading duplicates.
+  const published = (existing?.data.slices ?? [])
+    .filter((slice) => slice.variation === "full_image")
+    .map((slice) => slice.primary.image)
+    .filter((image) => image?.url);
+
   const diagrams = Object.fromEntries(
-    Object.entries(DIAGRAMS).map(([key, { file, alt }]) => [
+    Object.entries(DIAGRAMS).map(([key, { file, alt }], index) => [
       key,
-      migration.createAsset(fs.readFileSync(`${IMAGE_DIR}/${file}`), file, {
-        alt,
-      }),
+      published[index] ??
+        migration.createAsset(fs.readFileSync(`${IMAGE_DIR}/${file}`), file, {
+          alt,
+        }),
     ]),
+  );
+  console.log(
+    `  diagrams: ${published.length ? "reusing published" : "uploading"}`,
   );
 
   // Photos already in the media library, de-duplicated, as on Parkinson's.

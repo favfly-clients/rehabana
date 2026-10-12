@@ -22,11 +22,11 @@ export const list = (...items) => items.map((text) => node("list-item", text));
  * site-relative and stored as absolute rehabana.com URLs (Prismic web links
  * must be absolute). The renderer turns them back into site-relative links.
  */
-export const para = (texts, links = []) => {
+export const para = (texts, links = [], linksLabel = "Explore next") => {
   const body = texts.join("\n\n");
   if (!links.length) return [node("paragraph", body)];
 
-  const lead = `${body}\n\nExplore next: `;
+  const lead = `${body}\n\n${linksLabel}: `;
   let text = lead;
   const spans = links.map(([label, path], index) => {
     if (index) text += " • ";
@@ -60,6 +60,7 @@ export const about = ({
   heading,
   description,
   links,
+  linksLabel,
   items,
   image,
   swap,
@@ -70,7 +71,7 @@ export const about = ({
     subheading,
     // Optional: a section continuing the one above can go without a heading.
     heading: heading ? h2(heading) : [],
-    description: para(description, links),
+    description: para(description, links, linksLabel),
     list: items ? list(...items) : [],
     image,
     swap_layout: Boolean(swap),
@@ -129,3 +130,31 @@ export const cta = ({ subheading, heading, description, links, button }) => ({
   },
   items: [],
 });
+
+/**
+ * Images already in the media library, for content that has none of its own:
+ * the inner-page hero background every page shares, and up to `count`
+ * distinct photos from the service pages' About sections.
+ */
+export const loadLibraryImages = async (client, count = 8) => {
+  const [servicesPage, servicePages] = await Promise.all([
+    client.getSingle("services_page"),
+    client.getAllByType("service_page"),
+  ]);
+
+  const seen = new Set();
+  const photos = servicePages
+    .flatMap((page) => page.data.slices)
+    .filter((slice) => slice.slice_type === "about_section")
+    .map((slice) => slice.primary.image)
+    .filter((image) => image?.id && !seen.has(image.id) && seen.add(image.id))
+    .slice(0, count);
+
+  return {
+    lang: servicesPage.lang,
+    hero: servicesPage.data.slices.find(
+      (slice) => slice.slice_type === "hero_section",
+    )?.primary.background_image,
+    photos: [...Array(count)].map((_, i) => photos[i % photos.length]),
+  };
+};
