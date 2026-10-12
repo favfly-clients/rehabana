@@ -1,6 +1,14 @@
 import React from "react";
 
 /**
+ * Prismic web links must be absolute, so a link to our own page is stored as
+ * https://rehabana.com/... — render it site-relative so it stays on the
+ * current host (localhost, previews) instead of jumping to production.
+ */
+const OWN_ORIGIN = /^https?:\/\/(www\.)?rehabana\.com(?=\/|$)/i;
+const toHref = (url) => (url ? url.replace(OWN_ORIGIN, "") || "/" : url);
+
+/**
  * Creates a PrismicRichText components map so all HTML tags (paragraph, headings, lists, links)
  * are rendered with explicit components and optional classNames.
  *
@@ -47,7 +55,7 @@ export function createRichTextComponents({
       <li className={listItemClassName}>{children}</li>
     ),
     hyperlink: ({ children, node }) => (
-      <a href={node.data?.url} className={hyperlinkClassName}>
+      <a href={toHref(node.data?.url)} className={hyperlinkClassName}>
         {children}
       </a>
     ),

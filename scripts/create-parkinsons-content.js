@@ -30,82 +30,13 @@ dotenv.config({ path: ".env.local" });
 dotenv.config({ path: ".env" });
 
 import sm from "../slicemachine.config.json";
+import { about, cta, faq, h2, hero, paras } from "./lib/prismic-content";
 
 const REPOSITORY =
   process.env.NEXT_PUBLIC_PRISMIC_ENVIRONMENT || sm.repositoryName;
 
 const CONDITION_UID = "parkinsons-disease";
 const LOCAL_PAGE_UID = "parkinsons-treatment-in-kolkata";
-
-// ---------------------------------------------------------------------------
-// Rich text and slice builders
-// ---------------------------------------------------------------------------
-
-const node = (type, text) => ({ type, text, spans: [] });
-const h1 = (text) => [node("heading1", text)];
-const h2 = (text) => [node("heading2", text)];
-const paras = (...texts) => texts.map((text) => node("paragraph", text));
-
-/**
- * The shared slices' description fields allow ONE paragraph only, so several
- * paragraphs go in as one, split by a blank line — the same way the existing
- * service pages store them. The renderer turns the line breaks into <br>.
- */
-const para = (...texts) => [node("paragraph", texts.join("\n\n"))];
-const list = (...items) => items.map((text) => node("list-item", text));
-
-/** Inner-page hero: the same background every inner page on the site uses. */
-const hero = (heading, description, backgroundImage) => ({
-  slice_type: "hero_section",
-  variation: "secondary",
-  primary: {
-    heading: h1(heading),
-    description: para(description),
-    background_image: backgroundImage,
-  },
-  items: [],
-});
-
-const about = ({ subheading, heading, description, items, image, swap }) => ({
-  slice_type: "about_section",
-  variation: "default",
-  primary: {
-    subheading,
-    heading: h2(heading),
-    description: para(...description),
-    list: items ? list(...items) : [],
-    image,
-    swap_layout: Boolean(swap),
-  },
-  items: [],
-});
-
-const faq = (heading, questions) => ({
-  slice_type: "faq_section",
-  variation: "default",
-  primary: {
-    subheading: "FAQs",
-    heading: h2(heading),
-    description: [],
-    items: questions.map(([question, answer]) => ({
-      title: [node("heading3", question)],
-      details: paras(answer),
-    })),
-  },
-  items: [],
-});
-
-const cta = ({ subheading, heading, description, button }) => ({
-  slice_type: "cta_section",
-  variation: "default",
-  primary: {
-    subheading,
-    heading: h2(heading),
-    description: para(description),
-    primary_button: button || { link_type: "Any" },
-  },
-  items: [],
-});
 
 // ---------------------------------------------------------------------------
 // Content
