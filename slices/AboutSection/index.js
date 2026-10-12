@@ -1,4 +1,5 @@
 import DefaultSection from "@/components/about-section";
+import FullImageAboutSection from "@/components/about-section/full-image";
 
 /**
  * @typedef {import("@prismicio/client").Content.AboutSectionSlice} AboutSectionSlice
@@ -7,6 +8,8 @@ import DefaultSection from "@/components/about-section";
  */
 const AboutSection = ({ slice }) => {
   switch (slice.variation) {
+    case "full_image":
+      return <FullImageAboutSection slice={slice} />;
     default:
       return <DefaultSection slice={slice} />;
   }

@@ -75,6 +75,32 @@
         }
       },
       "items": {}
+    },
+    {
+      "id": "full_image",
+      "name": "Full Image",
+      "docURL": "...",
+      "version": "initial",
+      "description": "A full-width image, such as a diagram or infographic, with an optional caption",
+      "imageUrl": "",
+      "primary": {
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "caption": {
+          "type": "Text",
+          "config": {
+            "label": "Caption",
+            "placeholder": "Optional line under the image"
+          }
+        }
+      },
+      "items": {}
     }
   ]
 }

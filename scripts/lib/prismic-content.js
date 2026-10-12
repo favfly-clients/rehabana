@@ -68,12 +68,21 @@ export const about = ({
   variation: "default",
   primary: {
     subheading,
-    heading: h2(heading),
+    // Optional: a section continuing the one above can go without a heading.
+    heading: heading ? h2(heading) : [],
     description: para(description, links),
     list: items ? list(...items) : [],
     image,
     swap_layout: Boolean(swap),
   },
+  items: [],
+});
+
+/** About section, "Full Image" variation: a diagram across the full width. */
+export const fullImage = (image, caption) => ({
+  slice_type: "about_section",
+  variation: "full_image",
+  primary: { image, caption },
   items: [],
 });
 
