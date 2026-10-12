@@ -1,4 +1,12 @@
 import { createClient } from "@/prismicio";
+import {
+  CONDITIONS_BASE_PATH,
+  getAllConditions,
+  getAllTopics,
+  getConditionPath,
+  getConditionsPage,
+  getTopicPath,
+} from "@/lib/conditions";
 
 const websiteUrl = `https://${process.env.PRISMIC_ID}.${process.env.TLD}`;
 
@@ -40,7 +48,30 @@ const generateSiteMap = async () => {
     priority: item?.uid === "" ? 1.0 : 0.8,
   }));
 
-  const sitemap = [...staticSlugs];
+  // The conditions section is nested, so its URLs come from lib/conditions.js
+  // rather than from `uid`. The hub is listed only once its singleton exists.
+  const [conditionsPage, conditions, topics] = await Promise.all([
+    getConditionsPage(),
+    getAllConditions(),
+    getAllTopics(),
+  ]);
+
+  const conditionPaths = [
+    ...(conditionsPage ? [[CONDITIONS_BASE_PATH, conditionsPage]] : []),
+    ...conditions.map((doc) => [getConditionPath(doc), doc]),
+    ...topics
+      .filter((doc) => getTopicPath(doc))
+      .map((doc) => [getTopicPath(doc), doc]),
+  ];
+
+  const conditionSlugs = conditionPaths.map(([path, doc]) => ({
+    url: `${websiteUrl}${path}`,
+    lastModified: toValidDate(doc?.last_publication_date),
+    changeFrequency: "monthly",
+    priority: 0.8,
+  }));
+
+  const sitemap = [...staticSlugs, ...conditionSlugs];
 
   return sitemap;
 };

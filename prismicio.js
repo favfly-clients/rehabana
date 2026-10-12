@@ -20,6 +20,11 @@ const routes = [
   { type: "about_page", path: "/about" },
   { type: "blog_page", path: "/blog" },
   { type: "blog_post", path: "/:uid" },
+  { type: "conditions_page", path: "/conditions" },
+  { type: "condition", path: "/conditions/:uid" },
+  // `condition_topic` is left out on purpose: its URL needs the parent
+  // condition's slug and a trimmed UID, which a route can't express. Its URL
+  // comes from `linkResolver` in lib/conditions.js.
   { type: "contact_page", path: "/contact" },
   { type: "custom_page", path: "/:uid" },
   { type: "doctor", path: "/team/:uid" },

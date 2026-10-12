@@ -1,0 +1,117 @@
+{
+  "format": "page",
+  "id": "conditions_page",
+  "label": "Conditions Page",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "grid_subheading": {
+        "type": "Text",
+        "config": {
+          "label": "Conditions grid - subheading",
+          "placeholder": "e.g. What we treat"
+        }
+      },
+      "grid_heading": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Conditions grid - heading",
+          "placeholder": "e.g. Neurological conditions",
+          "allowTargetBlank": true,
+          "single": "heading2"
+        }
+      },
+      "grid_description": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Conditions grid - description",
+          "placeholder": "One or two lines above the condition cards",
+          "allowTargetBlank": true,
+          "multi": "paragraph,strong,em,hyperlink"
+        }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "hero_section": {
+              "type": "SharedSlice"
+            },
+            "about_section": {
+              "type": "SharedSlice"
+            },
+            "features_section": {
+              "type": "SharedSlice"
+            },
+            "process_section": {
+              "type": "SharedSlice"
+            },
+            "faq_section": {
+              "type": "SharedSlice"
+            },
+            "cta_section": {
+              "type": "SharedSlice"
+            },
+            "testimonial_section": {
+              "type": "SharedSlice"
+            },
+            "team_section": {
+              "type": "SharedSlice"
+            },
+            "gallery_section": {
+              "type": "SharedSlice"
+            },
+            "contact_section": {
+              "type": "SharedSlice"
+            }
+          }
+        }
+      }
+    },
+    "SEO & Metadata": {
+      "meta_title": {
+        "config": {
+          "label": "Meta Title",
+          "placeholder": "Meta Title [40-65 chars]"
+        },
+        "type": "Text"
+      },
+      "meta_description": {
+        "config": {
+          "label": "Meta Description",
+          "placeholder": "Page Description [70-155 chars]"
+        },
+        "type": "Text"
+      },
+      "featured_image": {
+        "type": "Image",
+        "config": {
+          "label": "Featured Image",
+          "constraint": {
+            "width": 1200,
+            "height": 600
+          },
+          "thumbnails": [
+            {
+              "name": "large",
+              "width": 1024,
+              "height": 524
+            },
+            {
+              "name": "medium",
+              "width": 300,
+              "height": 150
+            },
+            {
+              "name": "thumbnail",
+              "width": 150,
+              "height": 150
+            }
+          ]
+        }
+      }
+    }
+  }
+}
