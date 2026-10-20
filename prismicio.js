@@ -21,10 +21,13 @@ const routes = [
   { type: "blog_page", path: "/blog" },
   { type: "blog_post", path: "/:uid" },
   { type: "conditions_page", path: "/conditions" },
-  { type: "condition", path: "/conditions/:uid" },
-  // `condition_topic` is left out on purpose: its URL needs the parent
-  // condition's slug and a trimmed UID, which a route can't express. Its URL
-  // comes from `linkResolver` in lib/conditions.js.
+  // === NOTE: === Prismic follows at most `parent.parent`, so condition pages
+  // are capped at 3 levels; lib/conditions.js drops anything deeper.
+  {
+    type: "condition_page",
+    path: "/conditions/:grandparent?/:parent?/:uid",
+    resolvers: { parent: "parent", grandparent: "parent.parent" },
+  },
   { type: "contact_page", path: "/contact" },
   { type: "custom_page", path: "/:uid" },
   { type: "doctor", path: "/team/:uid" },

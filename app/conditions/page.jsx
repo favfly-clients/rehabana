@@ -6,11 +6,12 @@ import SchemaMarkup from "@/components/schema-markup";
 import { CardGrid } from "@/components/conditions";
 import {
   CONDITIONS_BASE_PATH,
-  getAllConditions,
-  getConditionPath,
+  getChildren,
+  getConditionTree,
   getConditionsPage,
   splitLeadingHero,
   toAbsoluteUrl,
+  toCards,
 } from "@/lib/conditions";
 import {
   generateBreadcrumbSchema,
@@ -20,15 +21,15 @@ import {
 
 /**
  * /conditions — the hub of the national conditions section. Hero first, then
- * a card for every published condition, then the rest of the slices.
+ * a card for every top-level condition page, then the rest of the slices.
  *
  * 404s until the `conditions_page` singleton is published, so the section
  * stays invisible while its content is still being written.
  */
 const ConditionsPage = async () => {
-  const [page, conditions] = await Promise.all([
+  const [page, tree] = await Promise.all([
     getConditionsPage(),
-    getAllConditions(),
+    getConditionTree(),
   ]);
   if (!page) notFound();
 
@@ -49,13 +50,6 @@ const ConditionsPage = async () => {
     generateFaqSchemaFromSlices(data.slices),
   ].filter(Boolean);
 
-  const cards = conditions.map((condition) => ({
-    title: condition.data.name || condition.uid,
-    summary: condition.data.summary,
-    href: getConditionPath(condition),
-    image: condition.data.featured_image,
-  }));
-
   return (
     <>
       <SchemaMarkup data={schemas} />
@@ -66,7 +60,7 @@ const ConditionsPage = async () => {
           heading: data.grid_heading,
           description: data.grid_description,
         }}
-        items={cards}
+        items={toCards(getChildren(tree, null))}
       />
       <SliceZoneWithContext slices={rest} components={components} />
     </>
