@@ -1,4 +1,4 @@
-Need to update these things also because the backend is currently updated as OpenAI is known, so the code and the frontend parts should be updated as per our conditions. Please check the whole application code, all files and structures. You can use subagents for scanning, get the report, and find and update these things import { createClient as baseCreateClient } from "@prismicio/client";
+import { createClient as baseCreateClient } from "@prismicio/client";
 import { enableAutoPreviews } from "@prismicio/next";
 import sm from "./slicemachine.config.json";
 
@@ -29,7 +29,7 @@ const routes = [
   { type: "custom_page", path: "/:uid" },
   { type: "doctor", path: "/team/:uid" },
   { type: "gallery_page", path: "/gallery" },
-  { type: "service_page", path: "/:uid" },
+  { type: "service_page", path: "/services/:uid" },
   { type: "services_page", path: "/services" },
   { type: "team_page", path: "/team" },
   { type: "testimonials_page", path: "/testimonials" },

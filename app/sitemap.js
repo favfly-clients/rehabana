@@ -25,15 +25,19 @@ const generateSiteMap = async () => {
 
   const client = createClient();
 
-  // Fetch all content types (custom_page + service_page served by [slug], blog_post by [slug])
+  // custom_page and blog_post are served by [slug]; service_page by services/[slug]
   const [blog_post, custom_page, service_page] = await Promise.all([
     client.getAllByType("blog_post"),
     client.getAllByType("custom_page"),
     client.getAllByType("service_page"),
   ]);
 
-  // Static app pages + custom_page and service_page routes (all served at /[slug])
-  const staticPages = [...links, ...custom_page, ...service_page, ...blog_post];
+  const staticPages = [
+    ...links,
+    ...custom_page,
+    ...blog_post,
+    ...service_page.map((doc) => ({ ...doc, uid: `services/${doc.uid}` })),
+  ];
 
   const toValidDate = (value) => {
     if (!value) return new Date();
