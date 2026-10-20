@@ -28,6 +28,10 @@ dotenv.config({ path: ".env" });
 
 import sm from "../slicemachine.config.json";
 import customPageModel from "../customtypes/custom_page/index.json";
+// === NOTE: === ids of the custom pages the first --write created in the
+// Migration Release before it stopped; --resume fills these instead of
+// creating duplicates.
+import MIGRATION_IDS from "../backups/prismic/2026-10-20-service-to-custom/migration-ids.json";
 
 const REPOSITORY =
   process.env.NEXT_PUBLIC_PRISMIC_ENVIRONMENT || sm.repositoryName;
@@ -69,6 +73,38 @@ const assertCopyable = (sources: Doc[]): void => {
 
 const titleOf = (doc: Doc): string => doc.data.meta_title || doc.uid || doc.id;
 
+const isBareEmptyLink = (value: Record<string, unknown>): boolean =>
+  value.link_type === "Any" &&
+  Object.keys(value).every((key) => key === "link_type" || key === "key");
+
+// === HACK: === the Content API returns a never-filled link as
+// `{ link_type: "Any", key }`, and the Migration API rejects that exact shape
+// ("not configured to be repeatable"). Dropping the key keeps it an empty link
+// — no target, no label — so the page renders the same.
+const dropEmptyLinkKeys = (value: unknown): unknown => {
+  if (Array.isArray(value)) return value.map(dropEmptyLinkKeys);
+  if (!value || typeof value !== "object") return value;
+  const record = value as Record<string, unknown>;
+  if (isBareEmptyLink(record)) return { link_type: "Any" };
+  return Object.fromEntries(
+    Object.entries(record).map(([key, item]) => [key, dropEmptyLinkKeys(item)]),
+  );
+};
+
+// === NOTE: === a link's `key` is Prismic's internal row id, not content;
+// verify ignores it so a regenerated key is not reported as a difference.
+const withoutLinkKeys = (value: unknown): unknown => {
+  if (Array.isArray(value)) return value.map(withoutLinkKeys);
+  if (!value || typeof value !== "object") return value;
+  const record = value as Record<string, unknown>;
+  const isLink = "link_type" in record;
+  return Object.fromEntries(
+    Object.entries(record)
+      .filter(([key]) => !(isLink && key === "key"))
+      .map(([key, item]) => [key, withoutLinkKeys(item)]),
+  );
+};
+
 const stage = async (client: prismic.WriteClient, sources: Doc[]) => {
   const migration = prismic.createMigration();
   for (const doc of sources) {
@@ -88,11 +124,39 @@ const stage = async (client: prismic.WriteClient, sources: Doc[]) => {
   });
 };
 
+const describeError = (error: any): string =>
+  JSON.stringify(error?.response ?? error?.message ?? error, null, 2);
+
+// === NOTE: === one migrate call per page, so one rejected page cannot stop
+// the rest from being filled, and its exact rejection reason gets printed.
+const fill = async (client: prismic.WriteClient, sources: Doc[]) => {
+  const failed: string[] = [];
+  for (const doc of sources) {
+    const id = MIGRATION_IDS[doc.uid as string];
+    if (!id) throw new Error(`No staged custom page id for ${doc.uid}`);
+    const migration = prismic.createMigration();
+    migration.updateDocument(
+      { ...doc, id, type: TARGET_TYPE, data: dropEmptyLinkKeys(doc.data) as Doc["data"] },
+      titleOf(doc),
+    );
+    try {
+      await client.migrate(migration);
+      console.log(`  filled  ${doc.uid}`);
+    } catch (error) {
+      failed.push(doc.uid as string);
+      console.log(`  FAILED  ${doc.uid}\n${describeError(error)}`);
+    }
+  }
+  return failed;
+};
+
 const verify = (sources: Doc[], targets: Map<string | null, Doc>): number => {
   let failures = 0;
   for (const source of sources) {
     const target = targets.get(source.uid);
-    const ok = target && isDeepStrictEqual(source.data, target.data);
+    const ok =
+      target &&
+      isDeepStrictEqual(withoutLinkKeys(source.data), withoutLinkKeys(target.data));
     if (!ok) failures += 1;
     console.log(`  ${ok ? "same   " : target ? "DIFFERS" : "MISSING"}  ${source.uid}`);
   }
@@ -113,12 +177,25 @@ const createClient = (write: boolean) => {
 };
 
 const main = async () => {
-  const mode = process.argv.includes("--write")
-    ? "write"
-    : process.argv.includes("--verify") ? "verify" : "dry-run";
-  const client = createClient(mode === "write");
+  const flag = ["--write", "--resume", "--verify"].find((item) => process.argv.includes(item));
+  const mode = flag?.slice(2) ?? "dry-run";
+  const client = createClient(mode === "write" || mode === "resume");
   const { sources, targets } = await fetchBoth(client);
   assertCopyable(sources);
+
+  if (mode === "resume") {
+    const failed = await fill(client as prismic.WriteClient, sources);
+    console.log(`\n${sources.length - failed.length}/${sources.length} filled.`);
+    if (failed.length) process.exitCode = 1;
+    return;
+  }
+
+  // === NOTE: === the staged pages are invisible to the read API until the
+  // release is published, so --write cannot tell they exist and would create
+  // duplicates; stop it once an id file exists.
+  if (mode === "write" && Object.keys(MIGRATION_IDS).length) {
+    throw new Error("Copies are already staged — use --resume to fill them.");
+  }
 
   if (mode === "verify") {
     const failures = verify(sources, targets);
