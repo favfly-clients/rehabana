@@ -232,7 +232,7 @@
                 "label": "Matching service page (optional - adds a photo and a link)",
                 "placeholder": "Pick a Service Page",
                 "select": "document",
-                "customtypes": ["service_page"],
+                "customtypes": ["custom_page", "service_page"],
                 "allowTargetBlank": false,
                 "allowText": false,
                 "repeat": false

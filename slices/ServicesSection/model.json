@@ -51,6 +51,14 @@
                   "repeat": false,
                   "customtypes": [
                     {
+                      "id": "custom_page",
+                      "fields": [
+                        "meta_title",
+                        "meta_description",
+                        "featured_image"
+                      ]
+                    },
+                    {
                       "id": "service_page",
                       "fields": [
                         "meta_title",

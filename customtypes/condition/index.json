@@ -41,6 +41,7 @@
           "placeholder": "Pick a Service Page",
           "select": "document",
           "customtypes": [
+            "custom_page",
             "service_page"
           ],
           "allowTargetBlank": false,

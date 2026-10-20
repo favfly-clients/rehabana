@@ -1,4 +1,4 @@
-import { createClient as baseCreateClient } from "@prismicio/client";
+Need to update these things also because the backend is currently updated as OpenAI is known, so the code and the frontend parts should be updated as per our conditions. Please check the whole application code, all files and structures. You can use subagents for scanning, get the report, and find and update these things import { createClient as baseCreateClient } from "@prismicio/client";
 import { enableAutoPreviews } from "@prismicio/next";
 import sm from "./slicemachine.config.json";
 
@@ -36,6 +36,20 @@ const routes = [
 ];
 
 /**
+ * Fields the Services slice cards read from the page each card links to.
+ * Asked for on every query so a card keeps its title, text and photo whatever
+ * the slice model's link config says; a query that passes its own
+ * `fetchLinks` replaces this list.
+ */
+const SERVICE_CARD_FETCH_LINKS = ["custom_page", "service_page"].flatMap(
+  (type) => [
+    `${type}.meta_title`,
+    `${type}.meta_description`,
+    `${type}.featured_image`,
+  ],
+);
+
+/**
  * Creates a Prismic client for the project's repository. The client is used to
  * query content from the Prismic API.
  *
@@ -45,6 +59,7 @@ export const createClient = (config = {}) => {
   const client = baseCreateClient(repositoryName, {
     routes,
     accessToken: process.env.PRISMIC_ACCESS_TOKEN,
+    defaultParams: { fetchLinks: SERVICE_CARD_FETCH_LINKS },
     fetchOptions:
       process.env.NODE_ENV === "production"
         ? { next: { tags: ["prismic"] }, cache: "force-cache" }
