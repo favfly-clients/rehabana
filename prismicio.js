@@ -1,4 +1,4 @@
-Need to update these things also because the backend is currently updated as OpenAI is known, so the code and the frontend parts should be updated as per our conditions. Please check the whole application code, all files and structures. You can use subagents for scanning, get the report, and find and update these things import { createClient as baseCreateClient } from "@prismicio/client";
+import { createClient as baseCreateClient } from "@prismicio/client";
 import { enableAutoPreviews } from "@prismicio/next";
 import sm from "./slicemachine.config.json";
 
@@ -21,10 +21,13 @@ const routes = [
   { type: "blog_page", path: "/blog" },
   { type: "blog_post", path: "/:uid" },
   { type: "conditions_page", path: "/conditions" },
-  { type: "condition", path: "/conditions/:uid" },
-  // `condition_topic` is left out on purpose: its URL needs the parent
-  // condition's slug and a trimmed UID, which a route can't express. Its URL
-  // comes from `linkResolver` in lib/conditions.js.
+  // === NOTE: === Prismic follows at most `parent.parent`, so condition pages
+  // are capped at 3 levels; lib/conditions.js drops anything deeper.
+  {
+    type: "condition_page",
+    path: "/conditions/:grandparent?/:parent?/:uid",
+    resolvers: { parent: "parent", grandparent: "parent.parent" },
+  },
   { type: "contact_page", path: "/contact" },
   { type: "custom_page", path: "/:uid" },
   { type: "doctor", path: "/team/:uid" },
