@@ -1,0 +1,108 @@
+{
+  "format": "page",
+  "id": "custom_page",
+  "label": "Custom Page",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "URL slug",
+          "placeholder": "e.g. physical-therapy"
+        }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "blog_post_content": {
+              "type": "SharedSlice"
+            },
+            "hero_section": {
+              "type": "SharedSlice"
+            },
+            "about_section": {
+              "type": "SharedSlice"
+            },
+            "cta_section": {
+              "type": "SharedSlice"
+            },
+            "features_section": {
+              "type": "SharedSlice"
+            },
+            "process_section": {
+              "type": "SharedSlice"
+            },
+            "testimonial_section": {
+              "type": "SharedSlice"
+            },
+            "faq_section": {
+              "type": "SharedSlice"
+            },
+            "gallery_section": {
+              "type": "SharedSlice"
+            },
+            "contact_section": {
+              "type": "SharedSlice"
+            },
+            "services_section": {
+              "type": "SharedSlice"
+            },
+            "blogs_section": {
+              "type": "SharedSlice"
+            },
+            "team_section": {
+              "type": "SharedSlice"
+            }
+          }
+        }
+      }
+    },
+    "SEO & Metadata": {
+      "meta_title": {
+        "config": {
+          "label": "Meta Title",
+          "placeholder": "Meta Title [40-65 chars]"
+        },
+        "type": "Text"
+      },
+      "meta_description": {
+        "config": {
+          "label": "Meta Description",
+          "placeholder": "Page Description [70-155 chars]"
+        },
+        "type": "Text"
+      },
+      "featured_image": {
+        "type": "Image",
+        "config": {
+          "label": "Featured Image",
+          "constraint": {
+            "width": 1200,
+            "height": 600
+          },
+          "thumbnails": [
+            {
+              "name": "large",
+              "width": 1024,
+              "height": 524
+            },
+            {
+              "name": "medium",
+              "width": 300,
+              "height": 150
+            },
+            {
+              "name": "thumbnail",
+              "width": 150,
+              "height": 150
+            }
+          ]
+        }
+      }
+    }
+  }
+}

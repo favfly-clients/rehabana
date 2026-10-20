@@ -1,0 +1,1423 @@
+[
+  {
+    "id": "aZ2DfRAAACEAuofm",
+    "uid": "privacy-policy",
+    "url": null,
+    "type": "custom_page",
+    "href": "https://rehabana.cdn.prismic.io/api/v2/documents/search?ref=atcyDxIAACwA-I5y&q=%5B%5B%3Ad+%3D+at%28document.id%2C+%22aZ2DfRAAACEAuofm%22%29+%5D%5D",
+    "tags": [],
+    "first_publication_date": "2026-02-24T10:57:03+0000",
+    "last_publication_date": "2026-02-24T10:57:03+0000",
+    "slugs": [
+      "privacy-policy"
+    ],
+    "linked_documents": [],
+    "lang": "en-us",
+    "alternate_languages": [],
+    "data": {
+      "slices": [
+        {
+          "variation": "secondary",
+          "version": "initial",
+          "items": [],
+          "primary": {
+            "heading": [
+              {
+                "type": "heading1",
+                "text": "Privacy Policy ",
+                "spans": [],
+                "direction": "ltr"
+              }
+            ],
+            "description": [
+              {
+                "type": "paragraph",
+                "text": "At Rehabana, we are committed to protecting your personal, medical, and digital information. This Privacy Policy explains how we collect, use, store, and safeguard your data while ensuring transparency, confidentiality, and ethical care at every step.",
+                "spans": [],
+                "direction": "ltr"
+              }
+            ],
+            "background_image": {
+              "dimensions": {
+                "width": 1500,
+                "height": 1000
+              },
+              "alt": "Privacy Policy ",
+              "copyright": null,
+              "url": "https://images.prismic.io/rehabana/aZ1N2MFoBIGEgtXA_DSC_1243.JPG?auto=format%2Ccompress&rect=208%2C0%2C5000%2C3333&w=1500&h=1000",
+              "id": "aZ1N2MFoBIGEgtXA",
+              "edit": {
+                "x": 208,
+                "y": 0,
+                "zoom": 1.2,
+                "background": "transparent"
+              }
+            }
+          },
+          "id": "hero_section$68422bcb-f123-4dac-936f-5d34fe280126",
+          "slice_type": "hero_section",
+          "slice_label": null
+        },
+        {
+          "variation": "default",
+          "version": "initial",
+          "items": [],
+          "primary": {
+            "items": [
+              {
+                "details": [
+                  {
+                    "type": "paragraph",
+                    "text": "Welcome to Rehabana.\nYour privacy is important to us. This Privacy Policy explains how we collect, use, protect, and manage personal and medical information when you visit our website or receive services from us.",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "paragraph",
+                    "text": "By using our services or website, you agree to the practices described in this policy.",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "heading2",
+                    "text": "Information We Collect",
+                    "spans": [
+                      {
+                        "start": 0,
+                        "end": 22,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "paragraph",
+                    "text": "We may collect the following types of information:",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "heading3",
+                    "text": "Personal Information",
+                    "spans": [
+                      {
+                        "start": 0,
+                        "end": 20,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Name, age, gender, contact details",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Address, email ID, phone number",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "heading3",
+                    "text": "Medical Information",
+                    "spans": [
+                      {
+                        "start": 0,
+                        "end": 19,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Medical history, diagnosis, reports, prescriptions",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Therapy progress notes and assessments",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "heading3",
+                    "text": "Website & Digital Information",
+                    "spans": [
+                      {
+                        "start": 0,
+                        "end": 29,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "IP address, browser type, device data",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Website usage behavior through cookies or analytics tools",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "heading2",
+                    "text": "How We Use Your Information",
+                    "spans": [
+                      {
+                        "start": 0,
+                        "end": 27,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "paragraph",
+                    "text": "Your information is used strictly to:",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Provide safe, effective, and customized rehabilitation care",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Schedule appointments and communicate treatment updates",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Maintain accurate medical records",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Improve our services, website, and patient experience",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Comply with legal, ethical, and regulatory obligations",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "paragraph",
+                    "text": "We do not sell or rent your personal or medical information to third parties.",
+                    "spans": [
+                      {
+                        "start": 3,
+                        "end": 22,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "heading2",
+                    "text": "Confidentiality of Medical Records",
+                    "spans": [
+                      {
+                        "start": 0,
+                        "end": 34,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "paragraph",
+                    "text": "All patient medical records are handled with strict confidentiality and accessed only by authorized medical professionals and staff involved in your care.",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "paragraph",
+                    "text": "Any sharing of medical information occurs only with patient consent or when required by law.",
+                    "spans": [
+                      {
+                        "start": 42,
+                        "end": 67,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "heading2",
+                    "text": "Cookies & Website Tracking",
+                    "spans": [
+                      {
+                        "start": 0,
+                        "end": 26,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "paragraph",
+                    "text": "Our website may use cookies to:",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Improve functionality and user experience",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Understand visitor behavior and website performance",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "paragraph",
+                    "text": "You may disable cookies through your browser settings, though some features may be affected.",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "heading2",
+                    "text": "Data Security",
+                    "spans": [
+                      {
+                        "start": 0,
+                        "end": 13,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "paragraph",
+                    "text": "We take reasonable technical and administrative measures to protect your data against:",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Unauthorized access",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Loss, misuse, or alteration",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "paragraph",
+                    "text": "Despite best efforts, no digital system is completely secure. We continuously work to improve data protection practices.",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "heading2",
+                    "text": "Third-Party Services",
+                    "spans": [
+                      {
+                        "start": 0,
+                        "end": 20,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "paragraph",
+                    "text": "We may use trusted third-party tools for:",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Website analytics",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Email communication",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Appointment scheduling",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "paragraph",
+                    "text": "These service providers are required to maintain confidentiality and comply with data protection standards.",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "heading2",
+                    "text": "Patient Rights",
+                    "spans": [
+                      {
+                        "start": 0,
+                        "end": 14,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "paragraph",
+                    "text": "You have the right to:",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Access your personal and medical information",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Request correction of inaccurate data",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Withdraw consent for non-essential communication",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "paragraph",
+                    "text": "Requests can be made by contacting us through official channels.",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "heading2",
+                    "text": "Children’s Privacy",
+                    "spans": [
+                      {
+                        "start": 0,
+                        "end": 18,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "paragraph",
+                    "text": "Our services may involve minors. In such cases, personal and medical data is collected only with the consent of parents or legal guardians.",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "heading2",
+                    "text": "Data Retention",
+                    "spans": [
+                      {
+                        "start": 0,
+                        "end": 14,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "paragraph",
+                    "text": "Patient data is retained only for as long as necessary to:",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Provide medical care",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Meet legal and regulatory requirements",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "paragraph",
+                    "text": "After this period, data is securely archived or disposed of.",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "heading2",
+                    "text": "Changes to This Policy",
+                    "spans": [
+                      {
+                        "start": 0,
+                        "end": 22,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "paragraph",
+                    "text": "Rehabana reserves the right to update this Privacy Policy periodically.\nAny changes will be reflected on this page with the updated date.",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "paragraph",
+                    "text": "Continued use of our services implies acceptance of the revised policy.",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "heading2",
+                    "text": "Contact Information",
+                    "spans": [
+                      {
+                        "start": 0,
+                        "end": 19,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "paragraph",
+                    "text": "If you have questions, concerns, or requests related to this Privacy Policy, please contact us through the phone number or email provided on our website.",
+                    "spans": [],
+                    "direction": "ltr"
+                  }
+                ],
+                "image": {},
+                "pdf": []
+              }
+            ]
+          },
+          "id": "blog_post_content$ad33cb4a-624e-4543-9723-024cbd8e856c",
+          "slice_type": "blog_post_content",
+          "slice_label": null
+        }
+      ],
+      "meta_title": "Privacy Policy | Rehabana Neuro Rehabilitation Center",
+      "meta_description": "Understand how Rehabana protects your personal and medical information. Learn about data collection, usage, and confidentiality practices.",
+      "featured_image": {
+        "dimensions": {
+          "width": 1200,
+          "height": 600
+        },
+        "alt": "Privacy Policy | Rehabana Neuro Rehabilitation Center",
+        "copyright": null,
+        "url": "https://images.prismic.io/rehabana/aZ17p8FoBIGEgtu8_20260107_125809-2-.jpg?auto=format,compress&rect=0,500,4000,2000&w=1200&h=600",
+        "id": "aZ17p8FoBIGEgtu8",
+        "edit": {
+          "x": 0,
+          "y": 500,
+          "zoom": 1,
+          "background": "transparent"
+        },
+        "large": {
+          "dimensions": {
+            "width": 1024,
+            "height": 524
+          },
+          "alt": null,
+          "copyright": null,
+          "url": "https://images.prismic.io/rehabana/aZ17p8FoBIGEgtu8_20260107_125809-2-.jpg?auto=format,compress&rect=0,477,4000,2047&w=1024&h=524",
+          "id": "aZ17p8FoBIGEgtu8",
+          "edit": {
+            "x": 0,
+            "y": 477,
+            "zoom": 1,
+            "background": "transparent"
+          }
+        },
+        "medium": {
+          "dimensions": {
+            "width": 300,
+            "height": 150
+          },
+          "alt": null,
+          "copyright": null,
+          "url": "https://images.prismic.io/rehabana/aZ17p8FoBIGEgtu8_20260107_125809-2-.jpg?auto=format,compress&rect=0,500,4000,2000&w=300&h=150",
+          "id": "aZ17p8FoBIGEgtu8",
+          "edit": {
+            "x": 0,
+            "y": 500,
+            "zoom": 1,
+            "background": "transparent"
+          }
+        },
+        "thumbnail": {
+          "dimensions": {
+            "width": 150,
+            "height": 150
+          },
+          "alt": null,
+          "copyright": null,
+          "url": "https://images.prismic.io/rehabana/aZ17p8FoBIGEgtu8_20260107_125809-2-.jpg?auto=format,compress&rect=500,0,3000,3000&w=150&h=150",
+          "id": "aZ17p8FoBIGEgtu8",
+          "edit": {
+            "x": 500,
+            "y": 0,
+            "zoom": 1,
+            "background": "transparent"
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "aZ18RxAAACAAunpl",
+    "uid": "our-vision",
+    "url": null,
+    "type": "custom_page",
+    "href": "https://rehabana.cdn.prismic.io/api/v2/documents/search?ref=atcyDxIAACwA-I5y&q=%5B%5B%3Ad+%3D+at%28document.id%2C+%22aZ18RxAAACAAunpl%22%29+%5D%5D",
+    "tags": [],
+    "first_publication_date": "2026-02-24T10:39:24+0000",
+    "last_publication_date": "2026-02-24T10:39:24+0000",
+    "slugs": [
+      "our-vision"
+    ],
+    "linked_documents": [],
+    "lang": "en-us",
+    "alternate_languages": [],
+    "data": {
+      "slices": [
+        {
+          "variation": "secondary",
+          "version": "initial",
+          "items": [],
+          "primary": {
+            "heading": [
+              {
+                "type": "heading1",
+                "text": "Our Vision",
+                "spans": [],
+                "direction": "ltr"
+              }
+            ],
+            "description": [
+              {
+                "type": "paragraph",
+                "text": "Redefining neurological recovery, without limits",
+                "spans": [],
+                "direction": "ltr"
+              }
+            ],
+            "background_image": {
+              "dimensions": {
+                "width": 1500,
+                "height": 773
+              },
+              "alt": "Redefining neurological recovery, without limits",
+              "copyright": null,
+              "url": "https://images.prismic.io/rehabana/aZ1sgMFoBIGEgtkA_IMG_20260220_131921.jpg.jpeg?auto=format%2Ccompress&rect=314%2C0%2C3289%2C1695&w=1500&h=773",
+              "id": "aZ1sgMFoBIGEgtkA",
+              "edit": {
+                "x": 314,
+                "y": 0,
+                "zoom": 1.24,
+                "background": "transparent"
+              }
+            }
+          },
+          "id": "hero_section$6783b20f-b012-44dd-a566-d2ac42cbe255",
+          "slice_type": "hero_section",
+          "slice_label": null
+        },
+        {
+          "variation": "default",
+          "version": "initial",
+          "items": [],
+          "primary": {
+            "items": [
+              {
+                "details": [
+                  {
+                    "type": "heading2",
+                    "text": "Our Vision",
+                    "spans": [
+                      {
+                        "start": 0,
+                        "end": 10,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "heading3",
+                    "text": "Restoring Mobility. Rebuilding Lives.",
+                    "spans": [
+                      {
+                        "start": 0,
+                        "end": 37,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "paragraph",
+                    "text": "At Rehabana, our vision is to see every patient achieve meaningful mobility and independence guided by expert care, advanced science, and unwavering compassion.\nWe believe recovery is not just about movement, but about confidence, dignity, and living life fully again.",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "heading2",
+                    "text": "Our Mission",
+                    "spans": [
+                      {
+                        "start": 0,
+                        "end": 11,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "paragraph",
+                    "text": "To make advanced neuro rehabilitation accessible and affordable for every individual improving mobility, confidence, and quality of life through medical science, technology, and compassionate care.",
+                    "spans": [
+                      {
+                        "start": 8,
+                        "end": 63,
+                        "type": "strong"
+                      },
+                      {
+                        "start": 145,
+                        "end": 196,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "heading2",
+                    "text": "What We Stand For",
+                    "spans": [
+                      {
+                        "start": 0,
+                        "end": 17,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "heading3",
+                    "text": "Compassionate Care",
+                    "spans": [
+                      {
+                        "start": 0,
+                        "end": 18,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "paragraph",
+                    "text": "We treat every patient with empathy, patience, and respect—supporting emotional wellbeing alongside physical recovery.",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "heading3",
+                    "text": "Neuro-Scientific Approach",
+                    "spans": [
+                      {
+                        "start": 0,
+                        "end": 25,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "paragraph",
+                    "text": "Our rehab programs are rooted in neuroscience, using robotic rehabilitation, task-specific training, and evidence-based techniques for better outcomes.",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "heading3",
+                    "text": "Empowering Families",
+                    "spans": [
+                      {
+                        "start": 0,
+                        "end": 19,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "paragraph",
+                    "text": "We educate and involve caregivers at every step, enabling sustainable recovery at home and long-term independence for patients.",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "heading2",
+                    "text": "The Future of Rehabilitation in India",
+                    "spans": [
+                      {
+                        "start": 0,
+                        "end": 37,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "heading3",
+                    "text": "Our Future Vision",
+                    "spans": [
+                      {
+                        "start": 0,
+                        "end": 17,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "paragraph",
+                    "text": "Rehabana strives to become the most trusted name in neuro rehabilitation in Eastern India, combining clinical excellence with continuous innovation.\nOur goal is to extend quality rehab beyond clinic walls by reaching communities that need it most.",
+                    "spans": [
+                      {
+                        "start": 31,
+                        "end": 89,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "paragraph",
+                    "text": "We aim to achieve this through:",
+                    "spans": [
+                      {
+                        "start": 0,
+                        "end": 31,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Community outreach and home-based rehabilitation programs",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Tele-rehabilitation and digital therapy platforms",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Training programs for physiotherapists and caregivers",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Research collaborations to advance rehabilitation science",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "paragraph",
+                    "text": "Our journey continues—because recovery deserves no limits.",
+                    "spans": [
+                      {
+                        "start": 30,
+                        "end": 57,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "heading2",
+                    "text": "Join Our Mission of Empowerment",
+                    "spans": [
+                      {
+                        "start": 0,
+                        "end": 31,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "paragraph",
+                    "text": "Whether you’re a patient, caregiver, or healthcare partner, your journey matters.\nTogether, we can transform rehabilitation into a path of strength, confidence, and independence.",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "paragraph",
+                    "text": "Get in touch and take the first step forward.",
+                    "spans": [
+                      {
+                        "start": 0,
+                        "end": 45,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  }
+                ],
+                "image": {},
+                "pdf": []
+              }
+            ]
+          },
+          "id": "blog_post_content$184fb339-2d9f-4b2b-bee6-2a6aeb81ee86",
+          "slice_type": "blog_post_content",
+          "slice_label": null
+        }
+      ],
+      "meta_title": "Our Vision | The Future of Neuro Rehabilitation at Rehabana",
+      "meta_description": "Explore the vision of Rehabana to redefine neuro rehabilitation through compassion, innovation, and accessible, doctor-led recovery care.",
+      "featured_image": {
+        "dimensions": {
+          "width": 1200,
+          "height": 600
+        },
+        "alt": "Our Vision",
+        "copyright": null,
+        "url": "https://images.prismic.io/rehabana/aZ17p8FoBIGEgtu8_20260107_125809-2-.jpg?auto=format,compress&rect=0,500,4000,2000&w=1200&h=600",
+        "id": "aZ17p8FoBIGEgtu8",
+        "edit": {
+          "x": 0,
+          "y": 500,
+          "zoom": 1,
+          "background": "transparent"
+        },
+        "large": {
+          "dimensions": {
+            "width": 1024,
+            "height": 524
+          },
+          "alt": null,
+          "copyright": null,
+          "url": "https://images.prismic.io/rehabana/aZ17p8FoBIGEgtu8_20260107_125809-2-.jpg?auto=format,compress&rect=0,477,4000,2047&w=1024&h=524",
+          "id": "aZ17p8FoBIGEgtu8",
+          "edit": {
+            "x": 0,
+            "y": 477,
+            "zoom": 1,
+            "background": "transparent"
+          }
+        },
+        "medium": {
+          "dimensions": {
+            "width": 300,
+            "height": 150
+          },
+          "alt": null,
+          "copyright": null,
+          "url": "https://images.prismic.io/rehabana/aZ17p8FoBIGEgtu8_20260107_125809-2-.jpg?auto=format,compress&rect=0,500,4000,2000&w=300&h=150",
+          "id": "aZ17p8FoBIGEgtu8",
+          "edit": {
+            "x": 0,
+            "y": 500,
+            "zoom": 1,
+            "background": "transparent"
+          }
+        },
+        "thumbnail": {
+          "dimensions": {
+            "width": 150,
+            "height": 150
+          },
+          "alt": null,
+          "copyright": null,
+          "url": "https://images.prismic.io/rehabana/aZ17p8FoBIGEgtu8_20260107_125809-2-.jpg?auto=format,compress&rect=500,0,3000,3000&w=150&h=150",
+          "id": "aZ17p8FoBIGEgtu8",
+          "edit": {
+            "x": 500,
+            "y": 0,
+            "zoom": 1,
+            "background": "transparent"
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "aZmfSBAAACAAtLGu",
+    "uid": "terms-conditions",
+    "url": null,
+    "type": "custom_page",
+    "href": "https://rehabana.cdn.prismic.io/api/v2/documents/search?ref=atcyDxIAACwA-I5y&q=%5B%5B%3Ad+%3D+at%28document.id%2C+%22aZmfSBAAACAAtLGu%22%29+%5D%5D",
+    "tags": [],
+    "first_publication_date": "2026-02-21T12:05:47+0000",
+    "last_publication_date": "2026-02-24T10:44:40+0000",
+    "slugs": [
+      "terms--conditions"
+    ],
+    "linked_documents": [],
+    "lang": "en-us",
+    "alternate_languages": [],
+    "data": {
+      "slices": [
+        {
+          "variation": "secondary",
+          "version": "initial",
+          "items": [],
+          "primary": {
+            "heading": [
+              {
+                "type": "heading1",
+                "text": "Terms & Conditions",
+                "spans": [
+                  {
+                    "start": 0,
+                    "end": 18,
+                    "type": "strong"
+                  }
+                ],
+                "direction": "ltr"
+              }
+            ],
+            "description": [
+              {
+                "type": "paragraph",
+                "text": "These Terms & Conditions outline the guidelines for using Rehabana’s services and website. They ensure transparency, mutual respect, and a safe, informed rehabilitation experience for patients, caregivers, and partners.",
+                "spans": [],
+                "direction": "ltr"
+              }
+            ],
+            "background_image": {
+              "dimensions": {
+                "width": 1500,
+                "height": 1000
+              },
+              "alt": "Terms & Conditions",
+              "copyright": null,
+              "url": "https://images.prismic.io/rehabana/aZ1N2MFoBIGEgtXA_DSC_1243.JPG?auto=format%2Ccompress&rect=208%2C0%2C5000%2C3333&w=1500&h=1000",
+              "id": "aZ1N2MFoBIGEgtXA",
+              "edit": {
+                "x": 208,
+                "y": 0,
+                "zoom": 1.2,
+                "background": "transparent"
+              }
+            }
+          },
+          "id": "hero_section$68422bcb-f123-4dac-936f-5d34fe280126",
+          "slice_type": "hero_section",
+          "slice_label": null
+        },
+        {
+          "variation": "default",
+          "version": "initial",
+          "items": [],
+          "primary": {
+            "items": [
+              {
+                "details": [
+                  {
+                    "type": "paragraph",
+                    "text": "Welcome to Rehabana.\nBy accessing our website, facilities, or services, you agree to comply with the following Terms & Conditions. These are designed to ensure transparency, safety, and clarity for all patients, caregivers, and partners.",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "heading2",
+                    "text": "Medical Disclaimer",
+                    "spans": [
+                      {
+                        "start": 0,
+                        "end": 18,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "paragraph",
+                    "text": "All information on this website is for general awareness and educational purposes only.\nIt does not replace professional medical advice, diagnosis, or treatment. Rehabilitation outcomes vary for each individual based on medical condition, severity, and response to therapy.",
+                    "spans": [
+                      {
+                        "start": 39,
+                        "end": 86,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "heading2",
+                    "text": "Treatment & Outcomes",
+                    "spans": [
+                      {
+                        "start": 0,
+                        "end": 20,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Rehab programs are doctor-led and customized, but recovery timelines and results cannot be guaranteed.",
+                    "spans": [
+                      {
+                        "start": 19,
+                        "end": 44,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Progress depends on medical condition, consistency, participation, and individual health factors.",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "No content on this website should be interpreted as a promise of cure or specific outcomes.",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "heading2",
+                    "text": "Appointments & Consultations",
+                    "spans": [
+                      {
+                        "start": 0,
+                        "end": 28,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Appointments are subject to availability and prior confirmation.",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Missed or cancelled sessions may be governed by clinic policies communicated at the time of booking.",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Doctor evaluations and therapy plans are decided based on clinical judgment.",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "heading2",
+                    "text": "Payments & Fees",
+                    "spans": [
+                      {
+                        "start": 0,
+                        "end": 15,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "All fees must be paid as per the agreed treatment plan and schedule.",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Fees once paid are generally non-refundable, unless stated otherwise in writing.",
+                    "spans": [
+                      {
+                        "start": 29,
+                        "end": 43,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Rehabana reserves the right to revise pricing with prior communication.",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "heading2",
+                    "text": "Patient Responsibilities",
+                    "spans": [
+                      {
+                        "start": 0,
+                        "end": 24,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "paragraph",
+                    "text": "Patients and caregivers are expected to:",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Share accurate medical history and reports",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Follow prescribed rehab plans and safety instructions",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Maintain respectful behavior toward staff and other patients",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "paragraph",
+                    "text": "Failure to comply may affect therapy outcomes or continuation of services.",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "heading2",
+                    "text": "Use of Website",
+                    "spans": [
+                      {
+                        "start": 0,
+                        "end": 14,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Website content may not be copied, reproduced, or misused without written permission.",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Any misuse, hacking, or attempt to disrupt services is strictly prohibited.",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Rehabana is not responsible for third-party links or external websites.",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "heading2",
+                    "text": "Privacy & Confidentiality",
+                    "spans": [
+                      {
+                        "start": 0,
+                        "end": 25,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "paragraph",
+                    "text": "Patient data, medical records, and personal information are handled with strict confidentiality, in accordance with applicable privacy laws and ethical medical standards.",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "heading2",
+                    "text": "Limitation of Liability",
+                    "spans": [
+                      {
+                        "start": 0,
+                        "end": 23,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "paragraph",
+                    "text": "Rehabana shall not be held liable for:",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Indirect or incidental damages",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Outcomes beyond clinical control",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "list-item",
+                    "text": "Decisions made based on website content without medical consultation",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "heading2",
+                    "text": "Policy Updates",
+                    "spans": [
+                      {
+                        "start": 0,
+                        "end": 14,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "paragraph",
+                    "text": "These Terms & Conditions may be updated periodically.\nContinued use of services implies acceptance of the latest version.",
+                    "spans": [],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "heading2",
+                    "text": "Contact Information",
+                    "spans": [
+                      {
+                        "start": 0,
+                        "end": 19,
+                        "type": "strong"
+                      }
+                    ],
+                    "direction": "ltr"
+                  },
+                  {
+                    "type": "paragraph",
+                    "text": "For questions or clarifications regarding these Terms & Conditions, please contact us directly through our official phone number or email listed on the website.",
+                    "spans": [],
+                    "direction": "ltr"
+                  }
+                ],
+                "image": {},
+                "pdf": []
+              }
+            ]
+          },
+          "id": "blog_post_content$ad33cb4a-624e-4543-9723-024cbd8e856c",
+          "slice_type": "blog_post_content",
+          "slice_label": null
+        }
+      ],
+      "meta_title": "Terms & Conditions | Rehabana Neuro Rehabilitation Center",
+      "meta_description": "Read the Terms & Conditions of Rehabana to understand service usage, patient responsibilities, and policies related to doctor-led neuro rehabilitation care.",
+      "featured_image": {
+        "dimensions": {
+          "width": 1200,
+          "height": 600
+        },
+        "alt": "Terms & Conditions | Rehabana Neuro Rehabilitation Center",
+        "copyright": null,
+        "url": "https://images.prismic.io/rehabana/aZ17p8FoBIGEgtu8_20260107_125809-2-.jpg?auto=format,compress&rect=0,500,4000,2000&w=1200&h=600",
+        "id": "aZ17p8FoBIGEgtu8",
+        "edit": {
+          "x": 0,
+          "y": 500,
+          "zoom": 1,
+          "background": "transparent"
+        },
+        "large": {
+          "dimensions": {
+            "width": 1024,
+            "height": 524
+          },
+          "alt": null,
+          "copyright": null,
+          "url": "https://images.prismic.io/rehabana/aZ17p8FoBIGEgtu8_20260107_125809-2-.jpg?auto=format,compress&rect=0,477,4000,2047&w=1024&h=524",
+          "id": "aZ17p8FoBIGEgtu8",
+          "edit": {
+            "x": 0,
+            "y": 477,
+            "zoom": 1,
+            "background": "transparent"
+          }
+        },
+        "medium": {
+          "dimensions": {
+            "width": 300,
+            "height": 150
+          },
+          "alt": null,
+          "copyright": null,
+          "url": "https://images.prismic.io/rehabana/aZ17p8FoBIGEgtu8_20260107_125809-2-.jpg?auto=format,compress&rect=0,500,4000,2000&w=300&h=150",
+          "id": "aZ17p8FoBIGEgtu8",
+          "edit": {
+            "x": 0,
+            "y": 500,
+            "zoom": 1,
+            "background": "transparent"
+          }
+        },
+        "thumbnail": {
+          "dimensions": {
+            "width": 150,
+            "height": 150
+          },
+          "alt": null,
+          "copyright": null,
+          "url": "https://images.prismic.io/rehabana/aZ17p8FoBIGEgtu8_20260107_125809-2-.jpg?auto=format,compress&rect=500,0,3000,3000&w=150&h=150",
+          "id": "aZ17p8FoBIGEgtu8",
+          "edit": {
+            "x": 500,
+            "y": 0,
+            "zoom": 1,
+            "background": "transparent"
+          }
+        }
+      }
+    }
+  }
+]
