@@ -32,6 +32,7 @@ import customPageModel from "../customtypes/custom_page/index.json";
 // Migration Release before it stopped; --resume fills these instead of
 // creating duplicates.
 import MIGRATION_IDS from "../backups/prismic/2026-10-20-service-to-custom/migration-ids.json";
+import { preserveImageCrops } from "./lib/preserve-image-crops";
 
 const REPOSITORY =
   process.env.NEXT_PUBLIC_PRISMIC_ENVIRONMENT || sm.repositoryName;
@@ -136,7 +137,12 @@ const fill = async (client: prismic.WriteClient, sources: Doc[]) => {
     if (!id) throw new Error(`No staged custom page id for ${doc.uid}`);
     const migration = prismic.createMigration();
     migration.updateDocument(
-      { ...doc, id, type: TARGET_TYPE, data: dropEmptyLinkKeys(doc.data) as Doc["data"] },
+      {
+        ...doc,
+        id,
+        type: TARGET_TYPE,
+        data: (await preserveImageCrops(dropEmptyLinkKeys(doc.data))) as Doc["data"],
+      },
       titleOf(doc),
     );
     try {
