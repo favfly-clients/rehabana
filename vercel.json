@@ -9,21 +9,6 @@
       "permanent": true
     },
     {
-      "source": "/parkinsons-rehab-information-page",
-      "destination": "/conditions/parkinsons-disease/parkinsons-caregiver-guide",
-      "permanent": true
-    },
-    {
-      "source": "/how-speech-therapy-helps-patients-with-parkinsons-disease",
-      "destination": "/conditions/parkinsons-disease/parkinsons-speech-swallowing",
-      "permanent": true
-    },
-    {
-      "source": "/new-treatment-for-parkinson-emerging-in-india",
-      "destination": "/conditions/parkinsons-disease/parkinsons-treatments",
-      "permanent": true
-    },
-    {
       "source": "/conditions/parkinsons-disease/:topic(symptoms|gait-and-mobility|treatments|non-motor-symptoms|speech-swallowing|physiotherapy|caregiver-guide|rehabilitation|occupational-therapy)",
       "destination": "/conditions/parkinsons-disease/parkinsons-:topic",
       "permanent": true
