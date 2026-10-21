@@ -1,7 +1,7 @@
 {
   "format": "page",
   "id": "conditions_page",
-  "label": "Conditions Landing",
+  "label": "Conditions Page",
   "repeatable": false,
   "status": true,
   "json": {
