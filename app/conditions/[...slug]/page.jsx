@@ -3,16 +3,12 @@ import { components } from "@/slices";
 import { SliceZoneWithContext } from "@/lib/SliceZoneWithContext";
 import Seo from "@/lib/seo/Seo";
 import SchemaMarkup from "@/components/schema-markup";
-import { CardGrid } from "@/components/conditions";
 import {
   CONDITIONS_BASE_PATH,
   findByPath,
-  getChildren,
   getConditionTree,
   getPageLabel,
-  splitLeadingHero,
   toAbsoluteUrl,
-  toCards,
   toCardsById,
 } from "@/lib/conditions";
 import {
@@ -23,8 +19,6 @@ import {
 } from "@/lib/schema-data";
 
 const SITE_HOME = "https://rehabana.com";
-
-const heading = (text) => [{ type: "heading2", text, spans: [] }];
 
 const segmentsPath = (chain) =>
   `${CONDITIONS_BASE_PATH}/${chain.map((item) => item.uid).join("/")}`;
@@ -63,65 +57,24 @@ const buildSchemas = ({ doc, chain, path }) => {
 };
 
 /**
- * /conditions/a[/b[/c]] — any condition page in the tree. A page with
- * children shows them as cards under its hero; a page without children
- * (an article) shows its siblings after the content instead.
+ * /conditions/a[/b[/c]] — any condition page in the tree. Its content, including
+ * any list of related conditions, comes from its Prismic slices.
  */
 const ConditionPage = async ({ params }) => {
   const tree = await getConditionTree();
   const entry = findByPath(tree, params.slug);
   if (!entry) notFound();
 
-  const { doc, chain } = entry;
-  const children = getChildren(tree, doc);
-  const parent = chain.at(-2) ?? null;
-  const siblings = children.length
-    ? []
-    : getChildren(tree, parent).filter((item) => item.doc.id !== doc.id);
-  const { lead, rest } = splitLeadingHero(doc.data.slices);
   const context = { conditionCards: toCardsById(tree) };
 
   return (
     <>
       <SchemaMarkup data={buildSchemas(entry)} />
-      {children.length > 0 ? (
-        <>
-          <SliceZoneWithContext
-            slices={lead}
-            components={components}
-            context={context}
-          />
-          <CardGrid
-            primary={{
-              subheading: "Explore",
-              heading: heading(`More on ${getPageLabel(doc)}`),
-            }}
-            items={toCards(children)}
-          />
-          <SliceZoneWithContext
-            slices={rest}
-            components={components}
-            context={context}
-          />
-        </>
-      ) : (
-        <>
-          <SliceZoneWithContext
-            slices={doc.data.slices}
-            components={components}
-            context={context}
-          />
-          {parent && (
-            <CardGrid
-              primary={{
-                subheading: "Keep reading",
-                heading: heading(`More on ${getPageLabel(parent)}`),
-              }}
-              items={toCards(siblings)}
-            />
-          )}
-        </>
-      )}
+      <SliceZoneWithContext
+        slices={entry.doc.data.slices}
+        components={components}
+        context={context}
+      />
     </>
   );
 };
