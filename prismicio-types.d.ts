@@ -21,32 +21,30 @@ type PickContentRelationshipFieldData<
 > =
   // Content relationship fields
   {
-    [TSubRelationship in Extract<
-      TRelationship["fields"][number],
-      prismic.CustomTypeModelFetchContentRelationshipLevel1
-    > as TSubRelationship["id"]]: ContentRelationshipFieldWithData<
-      TSubRelationship["customtypes"],
-      TLang
-    >;
+    [
+      TSubRelationship in Extract<
+        TRelationship["fields"][number],
+        prismic.CustomTypeModelFetchContentRelationshipLevel1
+      > as TSubRelationship["id"]
+    ]: ContentRelationshipFieldWithData<TSubRelationship["customtypes"], TLang>;
   } & // Group
   {
-    [TGroup in Extract<
-      TRelationship["fields"][number],
-      | prismic.CustomTypeModelFetchGroupLevel1
-      | prismic.CustomTypeModelFetchGroupLevel2
-    > as TGroup["id"]]: TData[TGroup["id"]] extends prismic.GroupField<
-      infer TGroupData
-    >
+    [
+      TGroup in Extract<
+        TRelationship["fields"][number],
+        | prismic.CustomTypeModelFetchGroupLevel1
+        | prismic.CustomTypeModelFetchGroupLevel2
+      > as TGroup["id"]
+    ]: TData[TGroup["id"]] extends prismic.GroupField<infer TGroupData>
       ? prismic.GroupField<
           PickContentRelationshipFieldData<TGroup, TGroupData, TLang>
         >
       : never;
   } & // Other fields
   {
-    [TFieldKey in Extract<
-      TRelationship["fields"][number],
-      string
-    >]: TFieldKey extends keyof TData ? TData[TFieldKey] : never;
+    [
+      TFieldKey in Extract<TRelationship["fields"][number], string>
+    ]: TFieldKey extends keyof TData ? TData[TFieldKey] : never;
   };
 
 type ContentRelationshipFieldWithData<
@@ -55,10 +53,9 @@ type ContentRelationshipFieldWithData<
     | readonly (prismic.CustomTypeModelFetchCustomTypeLevel2 | string)[],
   TLang extends string = string,
 > = {
-  [ID in Exclude<
-    TCustomType[number],
-    string
-  >["id"]]: prismic.ContentRelationshipField<
+  [
+    ID in Exclude<TCustomType[number], string>["id"]
+  ]: prismic.ContentRelationshipField<
     ID,
     TLang,
     PickContentRelationshipFieldData<
@@ -315,9 +312,7 @@ export interface BlogPostDocumentDataAuthorsItem {
 }
 
 type BlogPostDocumentDataSlicesSlice =
-  | CtaSectionSlice
-  | BlogPostContentSlice
-  | TableSectionSlice;
+  CtaSectionSlice | BlogPostContentSlice | TableSectionSlice;
 
 /**
  * Content for Blog Post documents
@@ -498,9 +493,203 @@ interface BlogsDocumentData {
 export type BlogsDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<BlogsDocumentData>, "blogs", Lang>;
 
-type ContactPageDocumentDataSlicesSlice =
+type ConditionPageDocumentDataSlicesSlice =
   | HeroSectionSlice
+  | AboutSectionSlice
+  | FeaturesSectionSlice
+  | ProcessSectionSlice
+  | FaqSectionSlice
+  | CtaSectionSlice
+  | DetailSectionSlice
+  | TestimonialSectionSlice
+  | TeamSectionSlice
+  | GallerySectionSlice
   | ContactSectionSlice;
+
+/**
+ * Content for Condition documents
+ */
+interface ConditionPageDocumentData {
+  /**
+   * Parent page (leave empty for a top-level page; max 3 levels deep) field in *Condition*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: Pick the Condition page this one sits under
+   * - **API ID Path**: condition_page.parent
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/content-relationship
+   */
+  parent: prismic.ContentRelationshipField<"condition_page">;
+
+  /**
+   * Slice Zone field in *Condition*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: condition_page.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/slices
+   */
+  slices: prismic.SliceZone<ConditionPageDocumentDataSlicesSlice>; /**
+   * Meta Title field in *Condition*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Meta Title [40-65 chars]
+   * - **API ID Path**: condition_page.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Condition*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Page Description [70-155 chars]
+   * - **API ID Path**: condition_page.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Featured Image field in *Condition*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: condition_page.featured_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  featured_image: prismic.ImageField<"large" | "medium" | "thumbnail">;
+}
+
+/**
+ * Condition document from Prismic
+ *
+ * - **API ID**: `condition_page`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ConditionPageDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<ConditionPageDocumentData>,
+    "condition_page",
+    Lang
+  >;
+
+type ConditionsPageDocumentDataSlicesSlice =
+  | HeroSectionSlice
+  | AboutSectionSlice
+  | FeaturesSectionSlice
+  | ProcessSectionSlice
+  | FaqSectionSlice
+  | CtaSectionSlice
+  | TestimonialSectionSlice
+  | TeamSectionSlice
+  | GallerySectionSlice
+  | ContactSectionSlice;
+
+/**
+ * Content for Conditions Page documents
+ */
+interface ConditionsPageDocumentData {
+  /**
+   * Conditions grid - subheading field in *Conditions Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g. What we treat
+   * - **API ID Path**: conditions_page.grid_subheading
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  grid_subheading: prismic.KeyTextField;
+
+  /**
+   * Conditions grid - heading field in *Conditions Page*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: e.g. Neurological conditions
+   * - **API ID Path**: conditions_page.grid_heading
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  grid_heading: prismic.RichTextField;
+
+  /**
+   * Conditions grid - description field in *Conditions Page*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: One or two lines above the condition cards
+   * - **API ID Path**: conditions_page.grid_description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  grid_description: prismic.RichTextField;
+
+  /**
+   * Slice Zone field in *Conditions Page*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: conditions_page.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/slices
+   */
+  slices: prismic.SliceZone<ConditionsPageDocumentDataSlicesSlice>; /**
+   * Meta Title field in *Conditions Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Meta Title [40-65 chars]
+   * - **API ID Path**: conditions_page.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Conditions Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Page Description [70-155 chars]
+   * - **API ID Path**: conditions_page.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Featured Image field in *Conditions Page*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: conditions_page.featured_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  featured_image: prismic.ImageField<"large" | "medium" | "thumbnail">;
+}
+
+/**
+ * Conditions Page document from Prismic
+ *
+ * - **API ID**: `conditions_page`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ConditionsPageDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<ConditionsPageDocumentData>,
+    "conditions_page",
+    Lang
+  >;
+
+type ContactPageDocumentDataSlicesSlice =
+  HeroSectionSlice | ContactSectionSlice;
 
 /**
  * Content for Contact Page documents
@@ -644,6 +833,952 @@ export type CustomPageDocument<Lang extends string = string> =
   >;
 
 /**
+ * Item in *Individual Team Member Page → Key numbers (the highlight strip)*
+ */
+export interface DoctorDocumentDataKeyNumbersItem {
+  /**
+   * Number field in *Individual Team Member Page → Key numbers (the highlight strip)*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g. 14+
+   * - **API ID Path**: doctor.key_numbers[].number
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  number: prismic.KeyTextField;
+
+  /**
+   * What this number means field in *Individual Team Member Page → Key numbers (the highlight strip)*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g. Years since qualifying (MBBS, 2012)
+   * - **API ID Path**: doctor.key_numbers[].what_it_means
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  what_it_means: prismic.KeyTextField;
+}
+
+/**
+ * Item in *Individual Team Member Page → Conditions treated*
+ */
+export interface DoctorDocumentDataConditionsTreatedItem {
+  /**
+   * Condition name field in *Individual Team Member Page → Conditions treated*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g. Stroke Rehabilitation
+   * - **API ID Path**: doctor.conditions_treated[].condition_name
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  condition_name: prismic.KeyTextField;
+
+  /**
+   * Matching service page (optional - adds a photo and a link) field in *Individual Team Member Page → Conditions treated*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: Pick a Service Page
+   * - **API ID Path**: doctor.conditions_treated[].service_page
+   * - **Documentation**: https://prismic.io/docs/fields/content-relationship
+   */
+  service_page:
+    | prismic.ContentRelationshipField<"custom_page">
+    | prismic.ContentRelationshipField<"service_page">;
+}
+
+/**
+ * Item in *Individual Team Member Page → Procedures & interventions performed*
+ */
+export interface DoctorDocumentDataProceduresItem {
+  /**
+   * Procedure name field in *Individual Team Member Page → Procedures & interventions performed*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g. Ultrasound-guided specialised injections
+   * - **API ID Path**: doctor.procedures[].procedure_name
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  procedure_name: prismic.KeyTextField;
+
+  /**
+   * Icon to show beside it field in *Individual Team Member Page → Procedures & interventions performed*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: Choose an icon
+   * - **Default Value**: General medical
+   * - **API ID Path**: doctor.procedures[].icon
+   * - **Documentation**: https://prismic.io/docs/fields/select
+   */
+  icon: prismic.SelectField<
+    | "Injection"
+    | "Scan / imaging"
+    | "Bone / joint"
+    | "Diagnostics"
+    | "Supportive care / orthotics"
+    | "Walking / gait"
+    | "Robotics"
+    | "General medical",
+    "filled"
+  >;
+}
+
+/**
+ * Item in *Individual Team Member Page → Education*
+ */
+export interface DoctorDocumentDataEducationItem {
+  /**
+   * Degree field in *Individual Team Member Page → Education*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g. MD - Physical Medicine & Rehabilitation
+   * - **API ID Path**: doctor.education[].degree
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  degree: prismic.KeyTextField;
+
+  /**
+   * College or institute field in *Individual Team Member Page → Education*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g. Bankura Sammilani Medical College
+   * - **API ID Path**: doctor.education[].college_or_institute
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  college_or_institute: prismic.KeyTextField;
+
+  /**
+   * Year (or year range) field in *Individual Team Member Page → Education*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g. 2012, or 2015 - 2018
+   * - **API ID Path**: doctor.education[].year
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  year: prismic.KeyTextField;
+
+  /**
+   * Certificate or registration number (optional) field in *Individual Team Member Page → Education*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Leave empty if there is none
+   * - **API ID Path**: doctor.education[].certificate_number
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  certificate_number: prismic.KeyTextField;
+
+  /**
+   * Verification link (optional - opens in a new tab) field in *Individual Team Member Page → Education*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: https://
+   * - **API ID Path**: doctor.education[].verification_link
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  verification_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Certificate file - image or PDF (optional) field in *Individual Team Member Page → Education*
+   *
+   * - **Field Type**: Link to Media
+   * - **Placeholder**: Upload to the media library
+   * - **API ID Path**: doctor.education[].certificate_file
+   * - **Documentation**: https://prismic.io/docs/fields/link-to-media
+   */
+  certificate_file: prismic.LinkToMediaField<prismic.FieldState, never>;
+}
+
+/**
+ * Item in *Individual Team Member Page → Work experience*
+ */
+export interface DoctorDocumentDataWorkExperienceItem {
+  /**
+   * Role / designation field in *Individual Team Member Page → Work experience*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g. Senior Resident, Physical Medicine & Rehabilitation
+   * - **API ID Path**: doctor.work_experience[].role_title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  role_title: prismic.KeyTextField;
+
+  /**
+   * Hospital or organisation field in *Individual Team Member Page → Work experience*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g. AIIMS, Bhubaneswar
+   * - **API ID Path**: doctor.work_experience[].hospital_or_organisation
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  hospital_or_organisation: prismic.KeyTextField;
+
+  /**
+   * Period field in *Individual Team Member Page → Work experience*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g. 2018 - 2021, or Present
+   * - **API ID Path**: doctor.work_experience[].period
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  period: prismic.KeyTextField;
+
+  /**
+   * What they did there field in *Individual Team Member Page → Work experience*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: One or two sentences
+   * - **API ID Path**: doctor.work_experience[].description
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  description: prismic.KeyTextField;
+}
+
+/**
+ * Item in *Individual Team Member Page → Certifications & training*
+ */
+export interface DoctorDocumentDataCertificationsItem {
+  /**
+   * Certification title field in *Individual Team Member Page → Certifications & training*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g. Fellowship in Pain Management
+   * - **API ID Path**: doctor.certifications[].certification_title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  certification_title: prismic.KeyTextField;
+
+  /**
+   * Issued by field in *Individual Team Member Page → Certifications & training*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g. Aesculap Academy, Germany
+   * - **API ID Path**: doctor.certifications[].issued_by
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  issued_by: prismic.KeyTextField;
+
+  /**
+   * Year field in *Individual Team Member Page → Certifications & training*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g. 2021
+   * - **API ID Path**: doctor.certifications[].year
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  year: prismic.KeyTextField;
+
+  /**
+   * Certificate number (optional) field in *Individual Team Member Page → Certifications & training*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Leave empty if there is none
+   * - **API ID Path**: doctor.certifications[].certificate_number
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  certificate_number: prismic.KeyTextField;
+
+  /**
+   * Verification link (optional - opens in a new tab) field in *Individual Team Member Page → Certifications & training*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: https://
+   * - **API ID Path**: doctor.certifications[].verification_link
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  verification_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Certificate file - image or PDF (optional) field in *Individual Team Member Page → Certifications & training*
+   *
+   * - **Field Type**: Link to Media
+   * - **Placeholder**: Upload to the media library
+   * - **API ID Path**: doctor.certifications[].certificate_file
+   * - **Documentation**: https://prismic.io/docs/fields/link-to-media
+   */
+  certificate_file: prismic.LinkToMediaField<prismic.FieldState, never>;
+}
+
+/**
+ * Item in *Individual Team Member Page → Publications & research*
+ */
+export interface DoctorDocumentDataPublicationsItem {
+  /**
+   * Paper title field in *Individual Team Member Page → Publications & research*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Full title as published
+   * - **API ID Path**: doctor.publications[].paper_title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  paper_title: prismic.KeyTextField;
+
+  /**
+   * Journal, volume and pages field in *Individual Team Member Page → Publications & research*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g. Clinics in Shoulder and Elbow - 25(1):73-89
+   * - **API ID Path**: doctor.publications[].journal_and_issue
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  journal_and_issue: prismic.KeyTextField;
+
+  /**
+   * Year field in *Individual Team Member Page → Publications & research*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g. 2022
+   * - **API ID Path**: doctor.publications[].year
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  year: prismic.KeyTextField;
+
+  /**
+   * DOI number (optional) field in *Individual Team Member Page → Publications & research*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g. 10.5397/cise.2021.00353
+   * - **API ID Path**: doctor.publications[].doi
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  doi: prismic.KeyTextField;
+
+  /**
+   * Link to read the paper (optional - always use https://doi.org/...) field in *Individual Team Member Page → Publications & research*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: https://doi.org/
+   * - **API ID Path**: doctor.publications[].article_link
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  article_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
+ * Item in *Individual Team Member Page → Professional memberships*
+ */
+export interface DoctorDocumentDataMembershipsItem {
+  /**
+   * Membership field in *Individual Team Member Page → Professional memberships*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g. Life Member, Indian Association of PMR (IAPMR)
+   * - **API ID Path**: doctor.memberships[].membership
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  membership: prismic.KeyTextField;
+}
+
+/**
+ * Item in *Individual Team Member Page → Awards & recognition*
+ */
+export interface DoctorDocumentDataAwardsItem {
+  /**
+   * Award title field in *Individual Team Member Page → Awards & recognition*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g. Best Paper Award
+   * - **API ID Path**: doctor.awards[].award_title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  award_title: prismic.KeyTextField;
+
+  /**
+   * Awarded by field in *Individual Team Member Page → Awards & recognition*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g. IAPMRCON 2020
+   * - **API ID Path**: doctor.awards[].awarded_by
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  awarded_by: prismic.KeyTextField;
+
+  /**
+   * Year field in *Individual Team Member Page → Awards & recognition*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g. 2020
+   * - **API ID Path**: doctor.awards[].year
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  year: prismic.KeyTextField;
+
+  /**
+   * Award photo or certificate (optional) field in *Individual Team Member Page → Awards & recognition*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: doctor.awards[].photo
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  photo: prismic.ImageField<never>;
+}
+
+/**
+ * Item in *Individual Team Member Page → Workshops & training attended*
+ */
+export interface DoctorDocumentDataWorkshopsItem {
+  /**
+   * Workshop title field in *Individual Team Member Page → Workshops & training attended*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g. Cadaveric needling and volunteer scanning
+   * - **API ID Path**: doctor.workshops[].workshop_title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  workshop_title: prismic.KeyTextField;
+
+  /**
+   * Conference or venue field in *Individual Team Member Page → Workshops & training attended*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g. ICMU 2023, Bengaluru
+   * - **API ID Path**: doctor.workshops[].conference_or_venue
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  conference_or_venue: prismic.KeyTextField;
+
+  /**
+   * Year field in *Individual Team Member Page → Workshops & training attended*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g. 2023
+   * - **API ID Path**: doctor.workshops[].year
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  year: prismic.KeyTextField;
+}
+
+/**
+ * Content for Individual Team Member Page documents
+ */
+interface DoctorDocumentData {
+  /**
+   * Full name field in *Individual Team Member Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g. Dr Kaustav Basu Thakur
+   * - **API ID Path**: doctor.full_name
+   * - **Tab**: Profile
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  full_name: prismic.KeyTextField;
+
+  /**
+   * Qualifications (shown under the name) field in *Individual Team Member Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g. MBBS, MD - PMR
+   * - **API ID Path**: doctor.qualifications
+   * - **Tab**: Profile
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  qualifications: prismic.KeyTextField;
+
+  /**
+   * Small label above the name field in *Individual Team Member Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g. Consultant Physiatrist
+   * - **API ID Path**: doctor.role_label
+   * - **Tab**: Profile
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  role_label: prismic.KeyTextField;
+
+  /**
+   * Job title field in *Individual Team Member Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g. Physical Medicine & Rehabilitation (PMR) Specialist, Kolkata
+   * - **API ID Path**: doctor.job_title
+   * - **Tab**: Profile
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  job_title: prismic.KeyTextField;
+
+  /**
+   * One-line specialisation summary field in *Individual Team Member Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g. Special interests in stroke rehabilitation, spasticity and pain management.
+   * - **API ID Path**: doctor.specialisation_summary
+   * - **Tab**: Profile
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  specialisation_summary: prismic.KeyTextField;
+
+  /**
+   * Profile photo (portrait) field in *Individual Team Member Page*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: doctor.profile_photo
+   * - **Tab**: Profile
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  profile_photo: prismic.ImageField<never>;
+
+  /**
+   * Linked blog author (pulls their articles to the bottom of the page) field in *Individual Team Member Page*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: Pick the matching Author document
+   * - **API ID Path**: doctor.blog_author_profile
+   * - **Tab**: Profile
+   * - **Documentation**: https://prismic.io/docs/fields/content-relationship
+   */
+  blog_author_profile: prismic.ContentRelationshipField<"author">;
+
+  /**
+   * Short introduction (first, highlighted paragraph) field in *Individual Team Member Page*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: One or two sentences introducing the doctor
+   * - **API ID Path**: doctor.short_introduction
+   * - **Tab**: Profile
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  short_introduction: prismic.RichTextField;
+
+  /**
+   * Full biography field in *Individual Team Member Page*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Training, experience and approach - one paragraph per idea
+   * - **API ID Path**: doctor.full_biography
+   * - **Tab**: Profile
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  full_biography: prismic.RichTextField;
+
+  /**
+   * Key numbers (the highlight strip) field in *Individual Team Member Page*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: doctor.key_numbers[]
+   * - **Tab**: Profile
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  key_numbers: prismic.GroupField<Simplify<DoctorDocumentDataKeyNumbersItem>>;
+
+  /**
+   * LinkedIn profile field in *Individual Team Member Page*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: https://www.linkedin.com/in/
+   * - **API ID Path**: doctor.linkedin_url
+   * - **Tab**: Profile
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  linkedin_url: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Facebook profile field in *Individual Team Member Page*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: https://www.facebook.com/
+   * - **API ID Path**: doctor.facebook_url
+   * - **Tab**: Profile
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  facebook_url: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * X (Twitter) profile field in *Individual Team Member Page*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: https://x.com/
+   * - **API ID Path**: doctor.x_twitter_url
+   * - **Tab**: Profile
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  x_twitter_url: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Instagram profile field in *Individual Team Member Page*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: https://www.instagram.com/
+   * - **API ID Path**: doctor.instagram_url
+   * - **Tab**: Profile
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  instagram_url: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * YouTube channel field in *Individual Team Member Page*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: https://www.youtube.com/
+   * - **API ID Path**: doctor.youtube_url
+   * - **Tab**: Profile
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  youtube_url: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * ResearchGate profile field in *Individual Team Member Page*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: https://www.researchgate.net/profile/
+   * - **API ID Path**: doctor.researchgate_url
+   * - **Tab**: Profile
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  researchgate_url: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Google Scholar profile field in *Individual Team Member Page*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: https://scholar.google.com/citations
+   * - **API ID Path**: doctor.google_scholar_url
+   * - **Tab**: Profile
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  google_scholar_url: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * ORCID profile field in *Individual Team Member Page*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: https://orcid.org/
+   * - **API ID Path**: doctor.orcid_url
+   * - **Tab**: Profile
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  orcid_url: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Personal website field in *Individual Team Member Page*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: https://
+   * - **API ID Path**: doctor.personal_website_url
+   * - **Tab**: Profile
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  personal_website_url: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >; /**
+   * Conditions treated field in *Individual Team Member Page*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: doctor.conditions_treated[]
+   * - **Tab**: Practice
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  conditions_treated: prismic.GroupField<
+    Simplify<DoctorDocumentDataConditionsTreatedItem>
+  >;
+
+  /**
+   * Procedures & interventions performed field in *Individual Team Member Page*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: doctor.procedures[]
+   * - **Tab**: Practice
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  procedures: prismic.GroupField<Simplify<DoctorDocumentDataProceduresItem>>;
+
+  /**
+   * Medical council registration number field in *Individual Team Member Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g. WBMC 12345
+   * - **API ID Path**: doctor.registration_number
+   * - **Tab**: Practice
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  registration_number: prismic.KeyTextField;
+
+  /**
+   * Phone number for this doctor's centre (empty = Saltlake main line) field in *Individual Team Member Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g. 9073746565 for Kalighat
+   * - **API ID Path**: doctor.phone_number
+   * - **Tab**: Practice
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  phone_number: prismic.KeyTextField;
+
+  /**
+   * Languages spoken field in *Individual Team Member Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g. English, Bengali, Hindi
+   * - **API ID Path**: doctor.languages_spoken
+   * - **Tab**: Practice
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  languages_spoken: prismic.KeyTextField;
+
+  /**
+   * Consulting days & hours field in *Individual Team Member Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: e.g. Mon to Sat, 10am - 6pm
+   * - **API ID Path**: doctor.consulting_hours
+   * - **Tab**: Practice
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  consulting_hours: prismic.KeyTextField; /**
+   * Education field in *Individual Team Member Page*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: doctor.education[]
+   * - **Tab**: Credentials
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  education: prismic.GroupField<Simplify<DoctorDocumentDataEducationItem>>;
+
+  /**
+   * Work experience field in *Individual Team Member Page*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: doctor.work_experience[]
+   * - **Tab**: Credentials
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  work_experience: prismic.GroupField<
+    Simplify<DoctorDocumentDataWorkExperienceItem>
+  >;
+
+  /**
+   * Certifications & training field in *Individual Team Member Page*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: doctor.certifications[]
+   * - **Tab**: Credentials
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  certifications: prismic.GroupField<
+    Simplify<DoctorDocumentDataCertificationsItem>
+  >;
+
+  /**
+   * Publications & research field in *Individual Team Member Page*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: doctor.publications[]
+   * - **Tab**: Credentials
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  publications: prismic.GroupField<
+    Simplify<DoctorDocumentDataPublicationsItem>
+  >; /**
+   * Professional memberships field in *Individual Team Member Page*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: doctor.memberships[]
+   * - **Tab**: Recognition
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  memberships: prismic.GroupField<Simplify<DoctorDocumentDataMembershipsItem>>;
+
+  /**
+   * Awards & recognition field in *Individual Team Member Page*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: doctor.awards[]
+   * - **Tab**: Recognition
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  awards: prismic.GroupField<Simplify<DoctorDocumentDataAwardsItem>>;
+
+  /**
+   * Workshops & training attended field in *Individual Team Member Page*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: doctor.workshops[]
+   * - **Tab**: Recognition
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  workshops: prismic.GroupField<Simplify<DoctorDocumentDataWorkshopsItem>>; /**
+   * Heading (write {name} where the doctor's name should appear) field in *Individual Team Member Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Want {name} to review your case?
+   * - **API ID Path**: doctor.cta_heading
+   * - **Tab**: Call to Action
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  cta_heading: prismic.KeyTextField;
+
+  /**
+   * Supporting line field in *Individual Team Member Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Share your reports and we will schedule an assessment at Rehabana Saltlake or Kalighat.
+   * - **API ID Path**: doctor.cta_description
+   * - **Tab**: Call to Action
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  cta_description: prismic.KeyTextField;
+
+  /**
+   * Booking button text - opens the enquiry form (empty = no button) field in *Individual Team Member Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Book a Consultation
+   * - **API ID Path**: doctor.cta_button_label
+   * - **Tab**: Call to Action
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  cta_button_label: prismic.KeyTextField;
+
+  /**
+   * Second button text (needs the link below to show) field in *Individual Team Member Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Back to Team
+   * - **API ID Path**: doctor.cta_secondary_button_label
+   * - **Tab**: Call to Action
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  cta_secondary_button_label: prismic.KeyTextField;
+
+  /**
+   * Second button link (needs the text above to show) field in *Individual Team Member Page*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Pick a page, or paste a URL
+   * - **API ID Path**: doctor.cta_secondary_button_link
+   * - **Tab**: Call to Action
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  cta_secondary_button_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >; /**
+   * Meta Title field in *Individual Team Member Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Meta Title [40-65 chars]
+   * - **API ID Path**: doctor.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Individual Team Member Page*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Page Description [70-155 chars]
+   * - **API ID Path**: doctor.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Featured Image field in *Individual Team Member Page*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: doctor.featured_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  featured_image: prismic.ImageField<"large" | "medium" | "thumbnail">;
+}
+
+/**
+ * Individual Team Member Page document from Prismic
+ *
+ * - **API ID**: `doctor`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type DoctorDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<Simplify<DoctorDocumentData>, "doctor", Lang>;
+
+/**
  * Item in *Gallery → Default → Items*
  */
 export interface GalleryDocumentDataDefaultItemsItem {
@@ -758,8 +1893,7 @@ export type GalleryDocument<Lang extends string = string> =
   >;
 
 type GalleryPageDocumentDataSlicesSlice =
-  | HeroSectionSlice
-  | GallerySectionSlice;
+  HeroSectionSlice | GallerySectionSlice;
 
 /**
  * Content for Gallery Page documents
@@ -1077,6 +2211,7 @@ type ServicePageDocumentDataSlicesSlice =
   | HeroSectionSlice
   | AboutSectionSlice
   | CtaSectionSlice
+  | DetailSectionSlice
   | FeaturesSectionSlice
   | ProcessSectionSlice
   | TestimonialSectionSlice
@@ -1151,8 +2286,7 @@ export type ServicePageDocument<Lang extends string = string> =
   >;
 
 type ServicesPageDocumentDataSlicesSlice =
-  | HeroSectionSlice
-  | ServicesSectionSlice;
+  HeroSectionSlice | ServicesSectionSlice;
 
 /**
  * Content for Services Page documents
@@ -1631,8 +2765,7 @@ export type TestimonialsDocument<Lang extends string = string> =
   >;
 
 type TestimonialsPageDocumentDataSlicesSlice =
-  | HeroSectionSlice
-  | TestimonialSectionSlice;
+  HeroSectionSlice | TestimonialSectionSlice;
 
 /**
  * Content for Testimonials Page documents
@@ -1703,8 +2836,11 @@ export type AllDocumentTypes =
   | BlogPageDocument
   | BlogPostDocument
   | BlogsDocument
+  | ConditionPageDocument
+  | ConditionsPageDocument
   | ContactPageDocument
   | CustomPageDocument
+  | DoctorDocument
   | GalleryDocument
   | GalleryPageDocument
   | HomePageDocument
@@ -1805,9 +2941,48 @@ export type AboutSectionSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *AboutSection → Full Image → Primary*
+ */
+export interface AboutSectionSliceFullImagePrimary {
+  /**
+   * Image field in *AboutSection → Full Image → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_section.full_image.primary.image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Caption field in *AboutSection → Full Image → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Optional line under the image
+   * - **API ID Path**: about_section.full_image.primary.caption
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  caption: prismic.KeyTextField;
+}
+
+/**
+ * Full Image variation for AboutSection Slice
+ *
+ * - **API ID**: `full_image`
+ * - **Description**: A full-width image, such as a diagram or infographic, with an optional caption
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type AboutSectionSliceFullImage = prismic.SharedSliceVariation<
+  "full_image",
+  Simplify<AboutSectionSliceFullImagePrimary>,
+  never
+>;
+
+/**
  * Slice variation for *AboutSection*
  */
-type AboutSectionSliceVariation = AboutSectionSliceDefault;
+type AboutSectionSliceVariation =
+  AboutSectionSliceDefault | AboutSectionSliceFullImage;
 
 /**
  * AboutSection Shared Slice
@@ -2337,6 +3512,51 @@ export type CtaSectionSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *DetailSection → Default → Primary*
+ */
+export interface DetailSectionSliceDefaultPrimary {
+  /**
+   * Content field in *DetailSection → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: detail_section.default.primary.content
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  content: prismic.RichTextField;
+}
+
+/**
+ * Default variation for DetailSection Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: One rich text field; images and embeds sit wherever they are placed in the text
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type DetailSectionSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<DetailSectionSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *DetailSection*
+ */
+type DetailSectionSliceVariation = DetailSectionSliceDefault;
+
+/**
+ * DetailSection Shared Slice
+ *
+ * - **API ID**: `detail_section`
+ * - **Description**: Long-form rich text with images placed inline, for condition and service pages
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type DetailSectionSlice = prismic.SharedSlice<
+  "detail_section",
+  DetailSectionSliceVariation
+>;
+
+/**
  * Item in *FAQSection → Default → Primary → Items*
  */
 export interface FaqSectionSliceDefaultPrimaryItemsItem {
@@ -2630,8 +3850,7 @@ export type FeaturesSectionSliceImage = prismic.SharedSliceVariation<
  * Slice variation for *FeaturesSection*
  */
 type FeaturesSectionSliceVariation =
-  | FeaturesSectionSliceDefault
-  | FeaturesSectionSliceImage;
+  FeaturesSectionSliceDefault | FeaturesSectionSliceImage;
 
 /**
  * FeaturesSection Shared Slice
@@ -2773,8 +3992,7 @@ export type GallerySectionSliceGlobal = prismic.SharedSliceVariation<
  * Slice variation for *GallerySection*
  */
 type GallerySectionSliceVariation =
-  | GallerySectionSliceDefault
-  | GallerySectionSliceGlobal;
+  GallerySectionSliceDefault | GallerySectionSliceGlobal;
 
 /**
  * GallerySection Shared Slice
@@ -3029,9 +4247,7 @@ export type HeroSectionSliceForm = prismic.SharedSliceVariation<
  * Slice variation for *HeroSection*
  */
 type HeroSectionSliceVariation =
-  | HeroSectionSliceDefault
-  | HeroSectionSliceSecondary
-  | HeroSectionSliceForm;
+  HeroSectionSliceDefault | HeroSectionSliceSecondary | HeroSectionSliceForm;
 
 /**
  * HeroSection Shared Slice
@@ -3169,14 +4385,9 @@ export interface ServicesSectionSliceDefaultPrimaryItemsItem {
    * - **API ID Path**: services_section.default.primary.items[].service
    * - **Documentation**: https://prismic.io/docs/fields/content-relationship
    */
-  service: ContentRelationshipFieldWithData<
-    [
-      {
-        id: "service_page";
-        fields: ["meta_title", "meta_description", "featured_image"];
-      },
-    ]
-  >;
+  service:
+    | prismic.ContentRelationshipField<"custom_page">
+    | prismic.ContentRelationshipField<"service_page">;
 }
 
 /**
@@ -3344,6 +4555,16 @@ export interface TeamSectionSliceDefaultPrimaryItemsItem {
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
   subtitle: prismic.KeyTextField;
+
+  /**
+   * Individual team member page (optional - makes the whole card clickable) field in *TeamSection → Default → Primary → Items*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: Pick an Individual Team Member Page
+   * - **API ID Path**: team_section.default.primary.items[].doctor_profile
+   * - **Documentation**: https://prismic.io/docs/fields/content-relationship
+   */
+  doctor_profile: prismic.ContentRelationshipField<"doctor">;
 
   /**
    * Social Links field in *TeamSection → Default → Primary → Items*
@@ -3552,8 +4773,7 @@ export type TeamSectionSliceDetails = prismic.SharedSliceVariation<
  * Slice variation for *TeamSection*
  */
 type TeamSectionSliceVariation =
-  | TeamSectionSliceDefault
-  | TeamSectionSliceDetails;
+  TeamSectionSliceDefault | TeamSectionSliceDetails;
 
 /**
  * TeamSection Shared Slice
@@ -3956,12 +5176,30 @@ declare module "@prismicio/client" {
       BlogPostDocumentDataSlicesSlice,
       BlogsDocument,
       BlogsDocumentData,
+      ConditionPageDocument,
+      ConditionPageDocumentData,
+      ConditionPageDocumentDataSlicesSlice,
+      ConditionsPageDocument,
+      ConditionsPageDocumentData,
+      ConditionsPageDocumentDataSlicesSlice,
       ContactPageDocument,
       ContactPageDocumentData,
       ContactPageDocumentDataSlicesSlice,
       CustomPageDocument,
       CustomPageDocumentData,
       CustomPageDocumentDataSlicesSlice,
+      DoctorDocument,
+      DoctorDocumentData,
+      DoctorDocumentDataKeyNumbersItem,
+      DoctorDocumentDataConditionsTreatedItem,
+      DoctorDocumentDataProceduresItem,
+      DoctorDocumentDataEducationItem,
+      DoctorDocumentDataWorkExperienceItem,
+      DoctorDocumentDataCertificationsItem,
+      DoctorDocumentDataPublicationsItem,
+      DoctorDocumentDataMembershipsItem,
+      DoctorDocumentDataAwardsItem,
+      DoctorDocumentDataWorkshopsItem,
       GalleryDocument,
       GalleryDocumentData,
       GalleryDocumentDataDefaultItemsItem,
@@ -4000,8 +5238,10 @@ declare module "@prismicio/client" {
       AllDocumentTypes,
       AboutSectionSlice,
       AboutSectionSliceDefaultPrimary,
+      AboutSectionSliceFullImagePrimary,
       AboutSectionSliceVariation,
       AboutSectionSliceDefault,
+      AboutSectionSliceFullImage,
       BlogPostContentSlice,
       BlogPostContentSliceDefaultPrimaryItemsItem,
       BlogPostContentSliceDefaultPrimary,
@@ -4025,6 +5265,10 @@ declare module "@prismicio/client" {
       CtaSectionSliceForm,
       CtaSectionSliceForm2,
       CtaSectionSliceBlog,
+      DetailSectionSlice,
+      DetailSectionSliceDefaultPrimary,
+      DetailSectionSliceVariation,
+      DetailSectionSliceDefault,
       FaqSectionSlice,
       FaqSectionSliceDefaultPrimaryItemsItem,
       FaqSectionSliceDefaultPrimary,
