@@ -8,6 +8,7 @@ export const components = {
   blogs_section: dynamic(() => import("./BlogsSection")),
   contact_section: dynamic(() => import("./ContactSection")),
   cta_section: dynamic(() => import("./CTASection")),
+  detail_section: dynamic(() => import("./DetailSection")),
   faq_section: dynamic(() => import("./FAQSection")),
   features_section: dynamic(() => import("./FeaturesSection")),
   gallery_section: dynamic(() => import("./GallerySection")),

@@ -1,0 +1,53 @@
+{
+  "id": "detail_section",
+  "type": "SharedSlice",
+  "name": "DetailSection",
+  "description": "Long-form detail text with optional images, for condition and service pages",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Heading, then repeatable text blocks each with an optional image",
+      "imageUrl": "",
+      "primary": {
+        "subheading": {
+          "type": "Text",
+          "config": {
+            "label": "Subheading",
+            "placeholder": ""
+          }
+        },
+        "heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Heading",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "single": "heading2,strong"
+          }
+        }
+      },
+      "items": {
+        "details": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Details",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink,heading3,heading4,list-item,o-list-item"
+          }
+        },
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        }
+      }
+    }
+  ]
+}
