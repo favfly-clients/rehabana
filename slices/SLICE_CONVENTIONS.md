@@ -13,7 +13,6 @@
 | **features_section** | `default`, `image` | Icon list vs image cards with number/title/details |
 | **testimonial_section** | `default`, `video`, `slider` | Text testimonials vs video-style vs slider (avatar, quote, rating) |
 | **team_section** | `default`, `details` | Teams grid (cards) vs single member detail (profile, bio, accordion) |
-| **services_section** | `default`, `conditions` | Hand-picked service cards vs hand-picked condition cards (same heading + linked list, different link type) |
 
 ### For new sections
 
@@ -37,5 +36,5 @@ Slice zones per page (use only the slices needed for that page):
 - **blog_page** – hero, blogs
 - **contact_page** – hero, contact
 - **gallery_page** – hero, gallery
-- **conditions_page** – hero, services (`conditions` variation), grid cards built from the tree
-- **condition_page** – any slice, services (`conditions` variation) for hand-picked links
+- **conditions_page** – hero, conditions_section (grid cards built from the tree)
+- **condition_page** – any slice, conditions_section for hand-picked links

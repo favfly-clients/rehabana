@@ -63,7 +63,7 @@
             "contact_section": {
               "type": "SharedSlice"
             },
-            "services_section": {
+            "conditions_section": {
               "type": "SharedSlice"
             }
           }
