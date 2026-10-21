@@ -12,6 +12,7 @@ import {
   splitLeadingHero,
   toAbsoluteUrl,
   toCards,
+  toCardsById,
 } from "@/lib/conditions";
 import {
   generateBreadcrumbSchema,
@@ -36,6 +37,7 @@ const ConditionsPage = async () => {
   const { data } = page;
   const { lead, rest } = splitLeadingHero(data.slices);
   const url = toAbsoluteUrl(CONDITIONS_BASE_PATH);
+  const context = { conditionCards: toCardsById(tree) };
 
   const schemas = [
     generateBreadcrumbSchema([
@@ -53,7 +55,11 @@ const ConditionsPage = async () => {
   return (
     <>
       <SchemaMarkup data={schemas} />
-      <SliceZoneWithContext slices={lead} components={components} />
+      <SliceZoneWithContext
+        slices={lead}
+        components={components}
+        context={context}
+      />
       <CardGrid
         primary={{
           subheading: data.grid_subheading,
@@ -62,7 +68,11 @@ const ConditionsPage = async () => {
         }}
         items={toCards(getChildren(tree, null))}
       />
-      <SliceZoneWithContext slices={rest} components={components} />
+      <SliceZoneWithContext
+        slices={rest}
+        components={components}
+        context={context}
+      />
     </>
   );
 };
