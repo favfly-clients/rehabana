@@ -1,49 +1,26 @@
 [
-  {
-    "__TYPE__": "SharedSliceContent",
-    "variation": "default",
-    "primary": {
-      "content": {
-        "__TYPE__": "StructuredTextContent",
-        "value": [
-          {
-            "type": "heading2",
-            "content": {
-              "text": "What to expect"
-            }
-          },
-          {
-            "type": "paragraph",
-            "content": {
-              "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-            }
-          },
-          {
-            "type": "image",
-            "url": "https://images.unsplash.com/photo-1601933973783-43cf8a7d4c5f",
-            "alt": "",
-            "dimensions": { "width": 1600, "height": 1067 }
-          },
-          {
-            "type": "heading3",
-            "content": {
-              "text": "Key steps"
-            }
-          },
-          {
-            "type": "list-item",
-            "content": {
-              "text": "Ut enim ad minim veniam"
-            }
-          },
-          {
-            "type": "list-item",
-            "content": {
-              "text": "Quis nostrud exercitation"
-            }
-          }
-        ]
-      }
-    }
-  }
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"content": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Culpa tempor labore et eu ex deserunt deserunt do quis mollit deserunt ullamco pariatur. Culpa ea aliquip consectetur."
+						}
+					}
+				]
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"key": "9d6d59fa-15e1-487e-b913-8baa3c5b67de",
+				"value": []
+			}
+		]
+	}
 ]
