@@ -27,6 +27,41 @@
       "source": "/conditions/parkinsons-disease/:topic(symptoms|gait-and-mobility|treatments|non-motor-symptoms|speech-swallowing|physiotherapy|caregiver-guide|rehabilitation|occupational-therapy)",
       "destination": "/conditions/parkinsons-disease/parkinsons-:topic",
       "permanent": true
+    },
+    {
+      "source": "/motor-neuron-disease",
+      "destination": "/motor-neuron-disease-treatment-kolkata",
+      "permanent": true
+    },
+    {
+      "source": "/garden-therapy",
+      "destination": "/garden-therapy-in-kolkata",
+      "permanent": true
+    },
+    {
+      "source": "/post-surgery-rehabilitation-centre",
+      "destination": "/post-surgery-rehabilitation-centre-in-kolkata",
+      "permanent": true
+    },
+    {
+      "source": "/robotic-rehab",
+      "destination": "/robotic-rehab-in-kolkata",
+      "permanent": true
+    },
+    {
+      "source": "/in-patient-module",
+      "destination": "/in-patient-module-neuro-rehab-in-kolkata",
+      "permanent": true
+    },
+    {
+      "source": "/pain-spasticity",
+      "destination": "/pain-spasticity-kolkata",
+      "permanent": true
+    },
+    {
+      "source": "/digital-rehab",
+      "destination": "/digital-rehab-kolkata",
+      "permanent": true
     }
   ]
 }
