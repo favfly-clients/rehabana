@@ -3,12 +3,7 @@
     "__TYPE__": "SharedSliceContent",
     "variation": "default",
     "primary": {
-      "subheading": {
-        "__TYPE__": "FieldContent",
-        "value": "Overview",
-        "type": "Text"
-      },
-      "heading": {
+      "content": {
         "__TYPE__": "StructuredTextContent",
         "value": [
           {
@@ -16,46 +11,39 @@
             "content": {
               "text": "What to expect"
             }
-          }
-        ]
-      }
-    },
-    "items": [
-      {
-        "details": {
-          "__TYPE__": "StructuredTextContent",
-          "value": [
-            {
-              "type": "paragraph",
-              "content": {
-                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-              }
+          },
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
             }
-          ]
-        },
-        "image": {
-          "__TYPE__": "FieldContent",
-          "type": "Image",
-          "value": {
+          },
+          {
+            "type": "image",
             "url": "https://images.unsplash.com/photo-1601933973783-43cf8a7d4c5f",
             "alt": "",
             "dimensions": { "width": 1600, "height": 1067 }
-          }
-        }
-      },
-      {
-        "details": {
-          "__TYPE__": "StructuredTextContent",
-          "value": [
-            {
-              "type": "paragraph",
-              "content": {
-                "text": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-              }
+          },
+          {
+            "type": "heading3",
+            "content": {
+              "text": "Key steps"
             }
-          ]
-        }
+          },
+          {
+            "type": "list-item",
+            "content": {
+              "text": "Ut enim ad minim veniam"
+            }
+          },
+          {
+            "type": "list-item",
+            "content": {
+              "text": "Quis nostrud exercitation"
+            }
+          }
+        ]
       }
-    ]
+    }
   }
 ]

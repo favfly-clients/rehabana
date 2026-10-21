@@ -2,52 +2,27 @@
   "id": "detail_section",
   "type": "SharedSlice",
   "name": "DetailSection",
-  "description": "Long-form detail text with optional images, for condition and service pages",
+  "description": "Long-form rich text with images placed inline, for condition and service pages",
   "variations": [
     {
       "id": "default",
       "name": "Default",
       "docURL": "...",
       "version": "initial",
-      "description": "Heading, then repeatable text blocks each with an optional image",
+      "description": "One rich text field; images and embeds sit wherever they are placed in the text",
       "imageUrl": "",
       "primary": {
-        "subheading": {
-          "type": "Text",
-          "config": {
-            "label": "Subheading",
-            "placeholder": ""
-          }
-        },
-        "heading": {
+        "content": {
           "type": "StructuredText",
           "config": {
-            "label": "Heading",
+            "label": "Content",
             "placeholder": "",
-            "allowTargetBlank": false,
-            "single": "heading2,strong"
+            "allowTargetBlank": true,
+            "multi": "heading2,heading3,heading4,heading5,heading6,paragraph,strong,em,hyperlink,list-item,o-list-item,image,embed"
           }
         }
       },
-      "items": {
-        "details": {
-          "type": "StructuredText",
-          "config": {
-            "label": "Details",
-            "placeholder": "",
-            "allowTargetBlank": true,
-            "multi": "paragraph,strong,em,hyperlink,heading3,heading4,list-item,o-list-item"
-          }
-        },
-        "image": {
-          "type": "Image",
-          "config": {
-            "label": "Image",
-            "constraint": {},
-            "thumbnails": []
-          }
-        }
-      }
+      "items": {}
     }
   ]
 }
