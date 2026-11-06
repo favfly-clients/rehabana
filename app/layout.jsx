@@ -24,6 +24,7 @@ import ContactModalPopup from "@/components/form/ContactModalPopup";
 
 import { createClient } from "@/prismicio";
 import NextTopLoader from "nextjs-toploader";
+import { GoogleTagManager } from "@next/third-parties/google";
 import SchemaMarkup from "@/components/schema-markup";
 import {
   organizationSchema,
@@ -31,6 +32,8 @@ import {
   saltlakeLocationSchema,
   kalighatLocationSchema,
 } from "@/lib/schema-data";
+
+const GTM_ID = "GTM-WH4QWRD6";
 
 //  ==== define metadata ====
 export const metadata = {
@@ -45,6 +48,7 @@ const RootLayout = async ({ children }) => {
 
   return (
     <html lang="en">
+      <GoogleTagManager gtmId={GTM_ID} />
       <body className={poppins.variable}>
         <StyledJsxRegistry>
           <SchemaMarkup
