@@ -1,5 +1,10 @@
 import { createClient } from "@/prismicio";
 import {
+  ASSESSMENTS_BASE_PATH,
+  getAssessmentTree,
+  getAssessmentsPage,
+} from "@/lib/assessments";
+import {
   CONDITIONS_BASE_PATH,
   getConditionTree,
   getConditionsPage,
@@ -69,7 +74,24 @@ const generateSiteMap = async () => {
     priority: 0.8,
   }));
 
-  const sitemap = [...staticSlugs, ...conditionSlugs];
+  const [assessmentsPage, assessmentTree] = await Promise.all([
+    getAssessmentsPage(),
+    getAssessmentTree(),
+  ]);
+
+  const assessmentPaths = [
+    ...(assessmentsPage ? [[ASSESSMENTS_BASE_PATH, assessmentsPage]] : []),
+    ...assessmentTree.map(({ path, doc }) => [path, doc]),
+  ];
+
+  const assessmentSlugs = assessmentPaths.map(([path, doc]) => ({
+    url: `${websiteUrl}${path}`,
+    lastModified: toValidDate(doc?.last_publication_date),
+    changeFrequency: "monthly",
+    priority: 0.8,
+  }));
+
+  const sitemap = [...staticSlugs, ...conditionSlugs, ...assessmentSlugs];
 
   return sitemap;
 };

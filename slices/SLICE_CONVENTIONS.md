@@ -38,3 +38,5 @@ Slice zones per page (use only the slices needed for that page):
 - **gallery_page** – hero, gallery
 - **conditions_page** – hero, conditions_section (grid cards built from the tree)
 - **condition_page** – any slice, conditions_section for hand-picked links
+- **assessments_page** – hero, assessments_section (hand-picked links)
+- **assessment_page** – any slice, assessments_section for hand-picked links

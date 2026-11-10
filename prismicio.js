@@ -20,6 +20,13 @@ const routes = [
   { type: "about_page", path: "/about" },
   { type: "blog_page", path: "/blog" },
   { type: "blog_post", path: "/:uid" },
+  { type: "assessments_page", path: "/assessments" },
+  // === NOTE: === Same 3-level cap as condition pages; lib/assessments.js drops anything deeper.
+  {
+    type: "assessment_page",
+    path: "/assessments/:grandparent?/:parent?/:uid",
+    resolvers: { parent: "parent", grandparent: "parent.parent" },
+  },
   { type: "conditions_page", path: "/conditions" },
   // === NOTE: === Prismic follows at most `parent.parent`, so condition pages
   // are capped at 3 levels; lib/conditions.js drops anything deeper.
