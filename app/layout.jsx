@@ -21,6 +21,7 @@ const poppins = Poppins({
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import ContactModalPopup from "@/components/form/ContactModalPopup";
+import FormSubmitRedirect from "@/components/form/form-submit-redirect";
 
 import { createClient } from "@/prismicio";
 import NextTopLoader from "nextjs-toploader";
@@ -64,6 +65,7 @@ const RootLayout = async ({ children }) => {
           {children}
           <Footer data={doc.data} />
           <ContactModalPopup />
+          <FormSubmitRedirect />
         </StyledJsxRegistry>
       </body>
     </html>

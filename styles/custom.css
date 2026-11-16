@@ -2884,3 +2884,33 @@ a.cs_doctor_tile:hover img {
     margin-top: 36px;
   }
 }
+
+.cs_thank_you {
+  max-width: 640px;
+}
+
+.cs_thank_you_icon {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  color: var(--white-color);
+  font-size: 36px;
+}
+
+.cs_thank_you_text {
+  max-width: 32em;
+  color: var(--body-color);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.cs_thank_you_actions {
+  gap: 24px;
+}
+
+@media (max-width: 575px) {
+  .cs_thank_you_actions {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
