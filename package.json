@@ -25,6 +25,7 @@
     "react-share": "^5.2.2"
   },
   "devDependencies": {
+    "@playwright/test": "^1.65.1",
     "@slicemachine/adapter-next": "^0.3.100",
     "slice-machine-ui": "^2.21.6"
   },
