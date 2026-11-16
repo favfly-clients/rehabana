@@ -2887,6 +2887,8 @@ a.cs_doctor_tile:hover img {
 
 .cs_thank_you {
   max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .cs_thank_you_icon {
@@ -2908,9 +2910,16 @@ a.cs_doctor_tile:hover img {
   gap: 24px;
 }
 
+.cs_thank_you_actions a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
 @media (max-width: 575px) {
   .cs_thank_you_actions {
     flex-direction: column;
-    gap: 16px;
+    align-items: center;
+    gap: 8px;
   }
 }
