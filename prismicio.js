@@ -1,6 +1,7 @@
 import { createClient as baseCreateClient } from "@prismicio/client";
 import { enableAutoPreviews } from "@prismicio/next";
 import sm from "./slicemachine.config.json";
+import { fetchWithConditionUrls } from "./lib/condition-urls";
 
 /**
  * The project's Prismic repository name.
@@ -29,7 +30,8 @@ const routes = [
   },
   { type: "conditions_page", path: "/conditions" },
   // === NOTE: === Prismic follows at most `parent.parent`, so condition pages
-  // are capped at 3 levels; lib/conditions.js drops anything deeper.
+  // are capped at 3 levels; lib/conditions.js drops anything deeper. Levels
+  // 2-3 are served from the site root: fetchWithConditionUrls rewrites them.
   {
     type: "condition_page",
     path: "/conditions/:grandparent?/:parent?/:uid",
@@ -68,6 +70,7 @@ const SERVICE_CARD_FETCH_LINKS = ["custom_page", "service_page"].flatMap(
 export const createClient = (config = {}) => {
   const client = baseCreateClient(repositoryName, {
     routes,
+    fetch: fetchWithConditionUrls,
     accessToken: process.env.PRISMIC_ACCESS_TOKEN,
     defaultParams: { fetchLinks: SERVICE_CARD_FETCH_LINKS },
     fetchOptions:
