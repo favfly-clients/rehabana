@@ -10,7 +10,12 @@
     },
     {
       "source": "/conditions/parkinsons-disease/:topic(symptoms|gait-and-mobility|treatments|non-motor-symptoms|speech-swallowing|physiotherapy|caregiver-guide|rehabilitation|occupational-therapy)",
-      "destination": "/conditions/parkinsons-disease/parkinsons-:topic",
+      "destination": "/parkinsons-disease/parkinsons-:topic",
+      "permanent": true
+    },
+    {
+      "source": "/conditions/:root/:rest+",
+      "destination": "/:root/:rest+",
       "permanent": true
     },
     {
