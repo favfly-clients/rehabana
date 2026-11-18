@@ -10,7 +10,7 @@
         "type": "UID",
         "config": {
           "label": "URL slug",
-          "placeholder": "e.g. parkinsons-care (short, unique; becomes one URL segment)"
+          "placeholder": "e.g. symptoms. Taken? Add a prefix and two dashes: ms--symptoms (only the part after -- shows in the URL)"
         }
       },
       "parent": {

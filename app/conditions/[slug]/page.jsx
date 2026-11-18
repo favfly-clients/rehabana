@@ -7,6 +7,7 @@ import {
   CONDITIONS_BASE_PATH,
   findByUrl,
   getConditionTree,
+  toUrlSegment,
 } from "@/lib/conditions";
 
 const findEntry = (tree, { slug }) =>
@@ -28,7 +29,7 @@ export async function generateStaticParams() {
   const tree = await getConditionTree();
   return tree
     .filter(({ chain }) => chain.length === 1)
-    .map(({ doc }) => ({ slug: doc.uid }));
+    .map(({ doc }) => ({ slug: toUrlSegment(doc.uid) }));
 }
 
 export async function generateMetadata({ params }) {
