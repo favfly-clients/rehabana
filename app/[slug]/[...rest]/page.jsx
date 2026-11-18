@@ -3,7 +3,11 @@ import {
   ConditionPage,
   getConditionMetadata,
 } from "@/components/conditions/condition-page";
-import { findByUrl, getConditionTree } from "@/lib/conditions";
+import {
+  findByUrl,
+  getConditionTree,
+  toUrlSegment,
+} from "@/lib/conditions";
 
 const MIN_NESTED_DEPTH = 2;
 
@@ -27,8 +31,8 @@ export async function generateStaticParams() {
   return tree
     .filter(({ chain }) => chain.length >= MIN_NESTED_DEPTH)
     .map(({ chain: [root, ...rest] }) => ({
-      slug: root.uid,
-      rest: rest.map((item) => item.uid),
+      slug: toUrlSegment(root.uid),
+      rest: rest.map((item) => toUrlSegment(item.uid)),
     }));
 }
 
