@@ -9,6 +9,41 @@ import { createRichTextComponents } from "@/lib/richTextComponents";
 
 const AUTHOR_FETCH_LINKS = ["author.name", "author.image", "author.designation"];
 
+const SITE_NAME = "Rehabana";
+const TITLE_MAX = 60;
+const DESCRIPTION_MAX = 155;
+
+/** Cuts `text` at a word boundary so it fits in `max` characters. */
+const clip = (text, max) => {
+  const clean = (text || "").replace(/\s+/g, " ").trim();
+  if (clean.length <= max) return clean;
+  const cut = clean.slice(0, max - 1);
+  return `${cut.slice(0, cut.lastIndexOf(" ")).replace(/[\s,;:.–-]+$/, "")}…`;
+};
+
+/**
+ * "Name, Designation | Rehabana", falling back to the designation's first
+ * part ("Consultant Physiatrist | Neuro, …" -> "Consultant Physiatrist") and
+ * then to "Name | Rehabana", so every author page has a unique title that
+ * fits in a search result.
+ */
+const authorTitle = (name, designation) => {
+  const candidates = [
+    designation && `${name}, ${designation.trim()} | ${SITE_NAME}`,
+    designation && `${name}, ${designation.split("|")[0].trim()} | ${SITE_NAME}`,
+    `${name} | ${SITE_NAME}`,
+  ].filter(Boolean);
+  return candidates.find((title) => title.length <= TITLE_MAX) ?? candidates.at(-1);
+};
+
+/** The bio, or a plain sentence built from name and designation. */
+const authorDescription = (name, designation, bio) =>
+  clip(
+    prismic.asText(bio) ||
+      `${name}${designation ? `, ${designation}` : ""} at Rehabana Neuro Rehab Center, Kolkata. Read articles by ${name}.`,
+    DESCRIPTION_MAX,
+  );
+
 const uniqueById = (docs = []) => {
   const seen = new Set();
   return docs.filter((doc) => {
@@ -156,5 +191,34 @@ const AuthorPage = async ({ params }) => {
     </div>
   );
 };
+
+export async function generateMetadata({ params }) {
+  const client = createClient();
+  const author = await client.getByUID("author", params?.uid || "").catch(() => null);
+  if (!author) notFound();
+
+  const { name, designation, bio, image } = author.data || {};
+  const displayName = name || author.uid;
+  const title = authorTitle(displayName, designation);
+  const description = authorDescription(displayName, designation, bio);
+  const path = `/authors/${author.uid}`;
+
+  return {
+    // `absolute`: the title already ends in "| Rehabana".
+    title: { absolute: title },
+    description,
+    metadataBase: new URL(`https://${process.env.PRISMIC_ID}.${process.env.TLD}`),
+    alternates: { canonical: path },
+    openGraph: {
+      title,
+      description,
+      url: path,
+      siteName: process.env.PRISMIC_ID,
+      type: "profile",
+      ...(image?.url && { images: [{ url: image.url, alt: image.alt || displayName }] }),
+      locale: "en_US",
+    },
+  };
+}
 
 export default AuthorPage;

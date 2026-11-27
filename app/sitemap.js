@@ -28,10 +28,11 @@ const generateSiteMap = async () => {
   const client = createClient();
 
   // custom_page and blog_post are served by [slug]; service_page by services/[slug]
-  const [blog_post, custom_page, service_page] = await Promise.all([
+  const [blog_post, custom_page, service_page, author] = await Promise.all([
     client.getAllByType("blog_post"),
     client.getAllByType("custom_page"),
     client.getAllByType("service_page"),
+    client.getAllByType("author"),
   ]);
 
   const staticPages = [
@@ -39,6 +40,8 @@ const generateSiteMap = async () => {
     ...custom_page,
     ...blog_post,
     ...service_page.map((doc) => ({ ...doc, uid: `services/${doc.uid}` })),
+    // Author pages are served by app/authors/[uid]
+    ...author.map((doc) => ({ ...doc, uid: `authors/${doc.uid}` })),
   ];
 
   const toValidDate = (value) => {
