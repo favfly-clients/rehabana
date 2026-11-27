@@ -22,6 +22,8 @@ import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import ContactModalPopup from "@/components/form/ContactModalPopup";
 import FormSubmitRedirect from "@/components/form/form-submit-redirect";
+import MobileContactBar from "@/components/layout/MobileContactBar";
+import ContactClickTracking from "@/components/analytics/ContactClickTracking";
 
 import { createClient } from "@/prismicio";
 import NextTopLoader from "nextjs-toploader";
@@ -64,6 +66,8 @@ const RootLayout = async ({ children }) => {
           <Header data={doc.data} />
           {children}
           <Footer data={doc.data} />
+          <MobileContactBar />
+          <ContactClickTracking />
           <ContactModalPopup />
           <FormSubmitRedirect />
         </StyledJsxRegistry>
