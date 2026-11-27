@@ -86,10 +86,12 @@ const HeroSectionForm = ({ slice }) => {
                 border: "1px solid rgba(0, 0, 0, 0.1)",
               }}
             >
+              {/* h2, not h3: it follows the page's h1 directly, and a skipped
+                  level is flagged by SEO audits. Size comes from the classes. */}
               {form_title && (
-                <h3 className="cs_appointment_heading cs_fs_20 cs_medium mb-4">
+                <h2 className="cs_appointment_heading cs_fs_20 cs_medium mb-4">
                   {form_title}
-                </h3>
+                </h2>
               )}
               <div style={{ margin: "-20px" }}>
                 <OpnFormIframe height="400px" />
