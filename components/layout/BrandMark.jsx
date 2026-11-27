@@ -19,7 +19,9 @@ const BrandMark = () => {
         </div>
         <a
           target="_blank"
-          rel="noreferrer"
+          // nofollow: a sitewide footer credit must not pass link equity
+          // (SEO audit BL6); noopener for the new tab.
+          rel="nofollow noopener noreferrer"
           title="Best digital marketing company in kolkata"
           href={`https://favfly.com?ref=${process.env.PRISMIC_ID}.${process.env.TLD}`}
           className="container pt-3 d-block"
