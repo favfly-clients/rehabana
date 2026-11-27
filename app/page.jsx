@@ -5,8 +5,8 @@ import Seo from "@/lib/seo/Seo";
 import BlogsSection from "@/components/blogs-section";
 import SchemaMarkup from "@/components/schema-markup";
 import {
-  homepageFaqSchema,
   generateBreadcrumbSchema,
+  generateFaqSchemaFromSlices,
   generateWebPageSchema,
 } from "@/lib/schema-data";
 
@@ -35,9 +35,15 @@ const HomePage = async () => {
     url: "https://rehabana.com",
   });
 
+  // Built from the FAQ slice itself, so the FAQPage markup always carries the
+  // same questions, answers and phone numbers as the accordion on screen.
+  const homeFaq = generateFaqSchemaFromSlices(doc.data.slices);
+
   return (
     <>
-      <SchemaMarkup data={[homeBreadcrumb, homeWebPage, homepageFaqSchema]} />
+      <SchemaMarkup
+        data={[homeBreadcrumb, homeWebPage, homeFaq].filter(Boolean)}
+      />
       <SliceZoneWithContext
         slices={doc.data.slices}
         components={components}
