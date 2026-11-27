@@ -12,6 +12,7 @@ import {
   generateArticleSchema,
 } from "@/lib/schema-data";
 import { buildServiceSchemas, findKnownService } from "@/lib/service-schema";
+import { getBlogAuthors } from "@/lib/blog-authors";
 
 const AUTHOR_FETCH_LINKS = ["author.name", "author.image", "author.designation"];
 
@@ -75,7 +76,8 @@ const CustomPage = async ({ params }) => {
     url: postUrl,
     image: blog.data.featured_image?.url || blog.data.image?.url || "",
     datePublished: blog.data.published_date,
-    dateModified: blog.data.last_publication_date,
+    dateModified: blog.last_publication_date,
+    authors: getBlogAuthors(blog.data),
   });
 
   return (
