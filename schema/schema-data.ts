@@ -308,7 +308,7 @@ export const homepageFaqSchema = {
       name: "How do we book an appointment?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Booking an appointment with Rehabana is simple. You can call or WhatsApp us at 9088746565, email us at rehabana.care@gmail.com, or visit our website and fill out the contact form. Our team will help schedule an assessment and answer any questions you may have.",
+        text: "Booking an appointment with Rehabana is simple. You can call our Salt Lake centre at +91 98367 46565 or our Kalighat centre at +91 90737 46565, email us at rehabana.care@gmail.com, or visit our website and fill out the contact form. Our team will help schedule an assessment and answer any questions you may have.",
       },
     },
     {
